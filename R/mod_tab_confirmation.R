@@ -79,7 +79,7 @@ mod_tab_confirmation_ui <- function(id,donnee_utilisateur){
                      placeholder = "Indiquer ici les r\u00e9gimes"
                    ),
                      ),
-             column(6,align="center",ifelse(sum(donnee_utilisateur$sexe =="F")>0,img(src = glue::glue("www/","lui.png")),
+             column(6,align="center",ifelse(!sum(donnee_utilisateur$sexe =="F")>0,img(src = glue::glue("www/","lui.png")),
                                             
                                             
                                             shinyWidgets::materialSwitch(
