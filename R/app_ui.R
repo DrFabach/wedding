@@ -43,10 +43,10 @@ app_ui <- function(request) {
                  mod_tab_witnesses_ui("tab_witnesses_ui_1")
                ),
                
-               tabPanel(
-                 title = "Covid",
-                 mod_tab_covid_ui("tab_covid_ui_1")
-               ),
+               # tabPanel(
+               #   title = "Covid",
+               #   mod_tab_covid_ui("tab_covid_ui_1")
+               # ),
                
                tabPanel(
                  title = "Espace des mari\u00e9s",
@@ -74,9 +74,9 @@ golem_add_external_resources <- function(){
   
   set_labels(
     language = "en",
-    "Please authenticate" = "Site du mariage de Margot & David",
-    "Username:" = "Identifiant (indiqu\u00e9 sur le faire-part) :",
-    "Password:" = "Mot de passe (indiqu\u00e9 sur le faire-part) :",
+    "Please authenticate" = "Site du Marriage de Barbara & Thibaut",
+    "Username:" = "Prénom en minuscule",
+    "Password:" = "Nom de famille en minuscule",
     "Login" = "Connexion",
     "Username or password are incorrect" = "L\'identifiant ou le mot de passe est incorrect"
   )

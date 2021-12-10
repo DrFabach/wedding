@@ -20,42 +20,31 @@ mod_tab_couple_ui <- function(id){
              # Image fond d'écran
              tags$div(class = "landing-block background-content",
                       
-                      img(src = glue::glue("www/", Sys.getenv("IMG_BACKGROUND")))
+                      img(src = glue::glue("www/", "wedding-background-2-compressed.jpeg"))
                       
              ),
              
              # Texte
              tags$div(class = "landing-block foreground-content",
                       tags$div(class = "foreground-text",
-                               tags$h1("Margot & David", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:10px"),
+                               tags$h1("Barbara et Thibaut", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:10px"),
                                tags$p("se disent oui", style = "font-family: 'Old script'; font-size:50px; letter-spacing:5px"),
                                tags$br(),
-                               tags$p("02 octobre 2021", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:10px")
+                               tags$p("11 Juin 2022", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:10px")
                       )
              ),
              
              # Décomptes
-             span(
+             
+             
+               
                textOutput(
                  outputId = ns("decompte_vie_commune")
                  ),
-               style = "font-family: 'Bauer Bodoni Std 1'; 
-                        font-size:20px; 
-                        letter-spacing:5px; 
-                        color: white;
-                        text-align: center" 
-               ),
-             
-             span(
+              
                textOutput(
                  outputId = ns("decompte_mariage")
-               ),
-               style = "font-family: 'Bauer Bodoni Std 1'; 
-                        font-size:20px; 
-                        letter-spacing:5px; 
-                        color: white;
-                        text-align: center" 
-             ),     
+               ),     
     )
   )
   
@@ -72,7 +61,7 @@ mod_tab_couple_server <- function(id, r_global){
     
     output$decompte_vie_commune <- renderText({
       
-      get_count_countdown_moments(start_moment = "2009-10-14 04:00:00",
+      get_count_countdown_moments(start_moment = "2010-06-11 15:00:00",
                                   end_moment = now(tzone = "Europe/Paris"),
                                   text = "depuis leur rencontre",
                                   time_zone = "Europe/Paris",
@@ -83,7 +72,7 @@ mod_tab_couple_server <- function(id, r_global){
     output$decompte_mariage <- renderText({
 
       get_count_countdown_moments(start_moment = now(tzone = "Europe/Paris"),
-                                  end_moment = "2021-10-02 15:00:00",
+                                  end_moment = "2022-06-11 15:00:00",
                                   text = "jusqu'au mariage",
                                   time_zone = "Europe/Paris",
                                   language = "fr")

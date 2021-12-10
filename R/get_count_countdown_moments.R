@@ -22,7 +22,7 @@
 #'                             text = "between the moment they met and the wedding")
 get_count_countdown_moments <- function(start_moment, end_moment, text, 
                                         time_zone = Sys.timezone(),
-                                        language = "en") {
+                                        language = "fr") {
   
   interval_moments <- interval(ymd_hms(start_moment), 
                                ymd_hms(end_moment), 
@@ -33,8 +33,8 @@ get_count_countdown_moments <- function(start_moment, end_moment, text,
   nb_minutes <- interval_moments %% days(1) %% hours(1) %/% minutes(1)
   nb_seconds <- interval_moments %% days(1) %% hours(1) %% minutes(1) %/% seconds(1)
   
-  if (language == "en") {
-    glue("{nb_days} d. {nb_hours} h. {nb_minutes} m. {nb_seconds} s. {text}")
+  if (language == "de") {
+    glue("{nb_days} t. {nb_hours} h. {nb_minutes} m. {nb_seconds} s. {text}")
   } else if (language == "fr") {
     glue("{nb_days} j. {nb_hours} h. {nb_minutes} m. {nb_seconds} s. {text}")
   }

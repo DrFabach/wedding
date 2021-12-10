@@ -99,6 +99,14 @@ html,body{
     text-align: center;
 }
 
+.landing-wrapper .decompte{
+  position: absolute;
+    top: 10%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Password textbox hidden tab couple */
 #hidden_tab_preparations_ui_1-password_tab_preparation {
     font-family: 'Bauer Bodoni Std 1';
@@ -160,6 +168,9 @@ html,body{
 }
 
 /* showNotifications */
+.span {
+  background: gold;
+ }
 
 .shiny-notification {
     font-family: 'Bauer Bodoni Std 1';

@@ -7,10 +7,10 @@
 #' 
 #' @noRd
 app_server <- function( input, output, session ) {
-  
+  if(T){
   credentials <- data.frame(
-    user = Sys.getenv("LOGIN_USER"), # mandatory
-    password = Sys.getenv("PWD_USER"), # mandatory
+    user = c("antoine","michele"), # mandatory
+    password = c("fabacher","fabacher"), # mandatory
     admin = FALSE,
     stringsAsFactors = FALSE
   )
@@ -18,27 +18,28 @@ app_server <- function( input, output, session ) {
   # call the server part
   # check_credentials returns a function to authenticate users
   res_auth <- shinymanager::secure_server(
-    check_credentials = shinymanager::check_credentials(credentials)
+    check_credentials = shinymanager::check_credentials(credentials),
+  keep_token = T
   )
-  
+  print(res_auth)
   output$auth_output <- renderPrint({
     reactiveValuesToList(res_auth)
   })
-  
+  }
   # Reactive values
   r_global <- reactiveValues()
     
   # Data on google drive
-  googledrive::drive_auth(cache = ".secrets", 
+  googledrive::drive_auth(cache = ".secrets",
                           email = Sys.getenv("GOOGLE_MAIL"))
   
   temp_dir <- tempdir()
   
-  googledrive::drive_download("data_expenses", path = glue::glue(temp_dir, "/data_expenses.csv"), overwrite = TRUE)
+  googledrive::drive_download("site_mariage/data_expenses", path = glue::glue(temp_dir, "/data_expenses.csv"), overwrite = TRUE)
   data_expenses <- read_csv(glue::glue(temp_dir, "/data_expenses.csv"), locale = locale(decimal_mark = ","))
   r_global$data_expenses <- data_expenses
   
-  googledrive::drive_download("data_guests", path = glue::glue(temp_dir, "/data_guests.csv"), overwrite = TRUE)
+  googledrive::drive_download("site_mariage/donnee_ivite", path = glue::glue(temp_dir, "/data_guests.csv"), overwrite = TRUE)
   data_guests <- read_csv(glue::glue(temp_dir, "/data_guests.csv"), 
                           locale = locale(decimal_mark = ","),
                           col_types = cols(table = col_integer(),

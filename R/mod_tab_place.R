@@ -21,15 +21,14 @@ mod_tab_place_ui <- function(id){
         width = 6,
         tags$div(img(src = "www/bellenoe.jpg"), style = "text-align: center"),
         tags$br(style = "line-height: 20px"),
-        tags$p("Manoir de Belle-No\u00eb", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center"),
-        tags$p("Dol-de-Bretagne", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")
+        tags$p("Château du Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")
         ),
       
       column(
         width = 6,
         align = "center",
         leafletOutput(
-          outputId = ns("carte_belle_noe"),
+          outputId = ns("carte_belle_Lichtenberg"),
           height = 341,
           width = 512
         )
@@ -100,13 +99,13 @@ mod_tab_place_server <- function(id, r_global){
     
     ns <- session$ns
     
-    output$carte_belle_noe <- renderLeaflet({
+    output$carte_belle_Lichtenberg <- renderLeaflet({
       
       get_map_wedding(
         data_markers = tibble(
-          longitude = -1.7129955029636943, 
-          latitude = 48.53024518235586,
-          name = "Manoir de Belle-No\u00eb"),
+          longitude = -728948, 
+          latitude = 48.55253,
+          name = "carte_belle_Lichtenberg"),
         icon_markers = "heart"
       )
                             

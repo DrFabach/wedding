@@ -10,14 +10,16 @@
 #'
 #' @importFrom shiny NS tagList 
 #' @importFrom shinyjs useShinyjs
-mod_tab_confirmation_ui <- function(id){
+mod_tab_confirmation_ui <- function(id,donnee_utilisateur){
   
   ns <- NS(id)
   
   tagList(
  
     useShinyjs(),
-    
+    fluidRow(align = "center",
+             img(src = glue::glue("www/", "confirmation.jpg"))
+    ),
     fluidRow(
       align = "center",
       tags$br(style = "line-height: 65px"),
@@ -25,112 +27,183 @@ mod_tab_confirmation_ui <- function(id){
       h1("Merci d\'indiquer la pr\u00e9sence de chaque personne, y compris celle des enfants", style = "font-family: \'Bauer Bodoni Std 1\'; font-size:15px; letter-spacing:2px; color: black; text-align: center"),
       tags$br(style = "line-height: 40px"),
     ),
-    
-    sidebarLayout(
-      
-      sidebarPanel(
-        
-        width = 5,
-        
-        selectInput(
-          inputId = ns("name"),
-          label = "Pr\u00e9nom",
-          choices = c("Choisir dans la liste la personne", letters),
-          selected = "Choisir dans la liste la personne"
-        ),
-
-        tags$br(style = "line-height: 20px"),
-        
-        tags$p("Pr\u00e9sence aux diff\u00e9rents moments du mariage", style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"),
-         
-        fluidRow(
-          column(
-            width = 4,
-            selectInput(
-              inputId = ns("here_cocktail"),
-              label = "Vin d\'honneur",
-              choices = c("", "Oui", "Non"),
-              selected = ""
-            )
-          ),
-          column(
-            width = 4,
-            selectInput(
-              inputId = ns("here_diner"),
-              label = "D\u00eener",
-              choices = c("", "Oui", "Non"),
-              selected = ""
-            )
-          ),
-          column(
-            width = 4,
-            selectInput(
-              inputId = ns("here_sunday"),
-              label = "Retour",
-              choices = c("", "Oui", "Non"),
-              selected = ""
-            )
-          )
-        ),
-        
-        tags$br(style = "line-height: 20px"),
-        
-        textInput(
-          inputId = ns("special_diet"),
-          label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
-          placeholder = "Indiquer ici les r\u00e9gimes"
-        ),
-        
-        uiOutput(ns("show_input_teens_menu")),
-      
-        uiOutput(ns("show_input_kids_menu")),
-        
-        tags$br(style = "line-height: 20px"),
-        
-        actionButton(
-          inputId = ns("save_info_guest"),
-          label = "Enregistrer mes choix pour cette personne *"
-        ),
-        
-        tags$br(style = "line-height: 20px"),
-        
-        tags$p("* Vous pourrez r\u00e9aliser de nouveau l\'op\u00e9ration pour ajouter une nouvelle personne", style = "font-size:15px; letter-spacing:3px; color: black"),
-        
-      ),
-      
-      mainPanel(
-        
-        width = 7,
-        
-        h1("R\u00e9capitulatif de vos informations", style = "font-size:20px"),
-        
-        tags$br(style = "line-height: 20px"),
-        
-        tableOutput(ns("summary_info_guest")),
-        
-        tags$br(style = "line-height: 20px"),
-        
-        fluidRow(
-          align = "center",
-          column(
-            width = 6,
-            actionButton(
-              inputId = ns("clean_last_info_guest"),
-              label = "Supprimer les derni\u00e8res informations enregistr\u00e9es"
-            )
-          ),
-          column(
-            width = 6,
-            actionButton(
-              inputId = ns("send_info_guest"),
-              label = "Envoyer mes choix aux mari\u00e9s"
-            )
-          )
-        )
-        
-      )
-      
-  )
+    fluidRow(column(6,align="center",
+                    img(src = glue::glue("www/", ifelse(sum(donnee_utilisateur$sexe =="F")>0,"elle.png","lui.png"))),
+                   br(),
+                   textInput(
+                     inputId = ns("name"),
+                       label = "Prénom",
+                     value = ifelse(sum(donnee_utilisateur$sexe =="F")>0,
+                                    donnee_utilisateur$prenom[donnee_utilisateur$sexe =="F"],
+                                    donnee_utilisateur$prenom[!donnee_utilisateur$sexe =="F"]),
+                     ),
+                   tags$br(style = "line-height: 20px"),
+                   
+                   tags$p("Pr\u00e9sence aux diff\u00e9rents moments du mariage", style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"),
+                   
+                   fluidRow(
+                     column(
+                       width = 4,
+                       selectInput(
+                         inputId = ns("here_cocktail"),
+                         label = "Vin d\'honneur",
+                         choices = c("", "Oui", "Non"),
+                         selected = ""
+                       )
+                     ),
+                     column(
+                       width = 4,
+                       selectInput(
+                         inputId = ns("here_diner"),
+                         label = "D\u00eener",
+                         choices = c("", "Oui", "Non"),
+                         selected = ""
+                       )
+                     ),
+                     column(
+                       width = 4,
+                       selectInput(
+                         inputId = ns("here_sunday"),
+                         label = "Retour",
+                         choices = c("", "Oui", "Non"),
+                         selected = ""
+                       )
+                     )
+                   ),
+                   
+                   tags$br(style = "line-height: 20px"),
+                   
+                   textInput(
+                     inputId = ns("special_diet"),
+                     label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
+                     placeholder = "Indiquer ici les r\u00e9gimes"
+                   ),
+                     ),
+             column(6,align="center",ifelse(sum(donnee_utilisateur$sexe =="F")>0,img(src = glue::glue("www/","lui.png")),
+                                            
+                                            
+                                            shinyWidgets::materialSwitch(
+                                              inputId = "Id078",
+                                              label = "Je viens accomagné.e",
+                                              value = F, 
+                                              status = "warning",
+                                              right = TRUE
+                                            )
+                                            
+             ),
+                    br(),
+                    textInput(
+                      inputId = ns("name"),
+                      label = "Prénom",
+                      value = ifelse(sum(donnee_utilisateur$sexe =="F")>0,
+                                     donnee_utilisateur$prenom[donnee_utilisateur$sexe =="F"],
+                                     donnee_utilisateur$prenom[!donnee_utilisateur$sexe =="F"]),
+                    ),
+                    tags$br(style = "line-height: 20px"),
+                    
+                    tags$p("Pr\u00e9sence aux diff\u00e9rents moments du mariage", style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"),
+                    
+                    fluidRow(
+                      column(
+                        width = 4,
+                        selectInput(
+                          inputId = ns("here_cocktail"),
+                          label = "Vin d\'honneur",
+                          choices = c("", "Oui", "Non"),
+                          selected = ""
+                        )
+                      ),
+                      column(
+                        width = 4,
+                        selectInput(
+                          inputId = ns("here_diner"),
+                          label = "D\u00eener",
+                          choices = c("", "Oui", "Non"),
+                          selected = ""
+                        )
+                      ),
+                      column(
+                        width = 4,
+                        selectInput(
+                          inputId = ns("here_sunday"),
+                          label = "Retour",
+                          choices = c("", "Oui", "Non"),
+                          selected = ""
+                        )
+                      )
+                    ),
+                    
+                    tags$br(style = "line-height: 20px"),
+                    
+                    textInput(
+                      inputId = ns("special_diet"),
+                      label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
+                      placeholder = "Indiquer ici les r\u00e9gimes"
+                    ),
+             )
+                    
+                    
+                    )
+  #   sidebarLayout(
+  #     
+  #     sidebarPanel(
+  #       
+  #       width = 5,
+  #       
+  #     
+  # 
+  #       
+  #       
+  #       uiOutput(ns("show_input_teens_menu")),
+  #     
+  #       uiOutput(ns("show_input_kids_menu")),
+  #       
+  #       tags$br(style = "line-height: 20px"),
+  #       
+  #       actionButton(
+  #         inputId = ns("save_info_guest"),
+  #         label = "Enregistrer mes choix pour cette personne *"
+  #       ),
+  #       
+  #       tags$br(style = "line-height: 20px"),
+  #       
+  #       tags$p("* Vous pourrez r\u00e9aliser de nouveau l\'op\u00e9ration pour ajouter une nouvelle personne", style = "font-size:15px; letter-spacing:3px; color: black"),
+  #       
+  #     ),
+  #     
+  #     mainPanel(
+  #       
+  #       width = 7,
+  #       
+  #       h1("R\u00e9capitulatif de vos informations", style = "font-size:20px"),
+  #       
+  #       tags$br(style = "line-height: 20px"),
+  #       
+  #       tableOutput(ns("summary_info_guest")),
+  #       
+  #       tags$br(style = "line-height: 20px"),
+  #       
+  #       fluidRow(
+  #         align = "center",
+  #         column(
+  #           width = 6,
+  #           actionButton(
+  #             inputId = ns("clean_last_info_guest"),
+  #             label = "Supprimer les derni\u00e8res informations enregistr\u00e9es"
+  #           )
+  #         ),
+  #         column(
+  #           width = 6,
+  #           actionButton(
+  #             inputId = ns("send_info_guest"),
+  #             label = "Envoyer mes choix aux mari\u00e9s"
+  #           )
+  #         )
+  #       )
+  #       
+  #     )
+  #     
+  # )
   )
   
 }
@@ -161,64 +234,64 @@ mod_tab_confirmation_server <- function(id, r_global){
                            time_confirmation = as.character())
     
     # Update input list guest according to data
-    observeEvent(TRUE, once = TRUE, {
-      
-      updateSelectInput(
-        session = session, 
-        inputId = "name", 
-        choices = c("Choisir dans la liste la personne", r_global$data_guests %>% distinct(name) %>% pull()),
-        selected = "Choisir dans la liste la personne"
-        )
-      
-    })
+    # observeEvent(TRUE, once = TRUE, {
+    #   
+    #   updateSelectInput(
+    #     session = session, 
+    #     inputId = "name", 
+    #     choices = c("Choisir dans la liste la personne", r_global$data_guests %>% distinct(name) %>% pull()),
+    #     selected = "Choisir dans la liste la personne"
+    #     )
+    #   
+    # })
     
     # Find info about guest in data and update selectinput menu according to guest type adult/teen/kid
     observeEvent(input$name, ignoreInit = TRUE, {
 
-      req(input$name != "Choisir dans la liste la personne")
-      req(r_global$data_guests)
-
-      r_local$type_guest <- r_global$data_guests %>%
-        filter(name == input$name) %>%
-        pull(type)
-
-      if (r_local$type_guest == "Ado") {
-
-        output$show_input_teens_menu <- renderUI({
-
-          selectInput(
-            inputId = ns("teens_menu"),
-            label = "Menu pour le d\u00eener - le menu adulte contient du foie gras et du canard",
-            choices = c("Menu adulte", "Menu enfant"),
-            selected = "Menu adulte"
-          )
-          
-        })
-        
-        shinyjs::hide(id = "kids_menu")
-
-      } else if (r_local$type_guest == "Enfant") {
-
-        output$show_input_kids_menu <- renderUI({
-
-          selectInput(
-            inputId = ns("kids_menu"),
-            label = "Choix pour les repas (cocktail, d\u00eener, retour)",
-            choices = c("Menu enfant", "Pas de repas \u00e0 pr\u00e9voir pour mon bibou"),
-            selected = "Menu enfant"
-          )
-
-        })
-        
-        shinyjs::hide(id = "teens_menu")
-        
-      } else {
-        
-        shinyjs::hide(id = "kids_menu")
-        shinyjs::hide(id = "teens_menu")
-        
-      }
-      
+      # req(input$name != "Choisir dans la liste la personne")
+      # req(r_global$data_guests)
+# 
+#       r_local$type_guest <- r_global$data_guests %>%
+#         filter(name == input$name) %>%
+#         pull(type)
+# 
+#       if (r_local$type_guest == "Ado") {
+# 
+#         output$show_input_teens_menu <- renderUI({
+# 
+#           selectInput(
+#             inputId = ns("teens_menu"),
+#             label = "Menu pour le d\u00eener - le menu adulte contient du foie gras et du canard",
+#             choices = c("Menu adulte", "Menu enfant"),
+#             selected = "Menu adulte"
+#           )
+#           
+#         })
+#         
+#         shinyjs::hide(id = "kids_menu")
+# 
+#       } else if (r_local$type_guest == "Enfant") {
+# 
+#         output$show_input_kids_menu <- renderUI({
+# 
+#           selectInput(
+#             inputId = ns("kids_menu"),
+#             label = "Choix pour les repas (cocktail, d\u00eener, retour)",
+#             choices = c("Menu enfant", "Pas de repas \u00e0 pr\u00e9voir pour mon bibou"),
+#             selected = "Menu enfant"
+#           )
+# 
+#         })
+#         
+#         shinyjs::hide(id = "teens_menu")
+#         
+#       } else {
+#         
+#         shinyjs::hide(id = "kids_menu")
+#         shinyjs::hide(id = "teens_menu")
+#         
+#       }
+#       
     })
     
     # Click on save choice / add info to sumamry tibble
@@ -343,3 +416,22 @@ mod_tab_confirmation_server <- function(id, r_global){
     
 ## To be copied in the server
 # mod_tab_confirmation_server("tab_confirmation_ui_1")
+
+
+mod_tab_confirmation_ui
+mod_tab_confirmation_server
+ui <- fluidPage(
+  mod_tab_confirmation_ui(1,donnee_utilisateur)
+)
+
+server <- function(input, output, session) {
+  mod_tab_confirmation_server(1, r_global = r_global)
+}
+
+shinyApp(ui, server)
+  
+donnee_utilisateur<- tibble(prenom= c("Antoine","Michele"),
+                            sexe = c("H","F"),
+                            enfants=0,
+                            repas =T
+                            )
