@@ -20,7 +20,8 @@ app_ui <- function(request) {
                
                tabPanel(
                  title = "Confirmer ma venue", 
-                 mod_tab_confirmation_ui("tab_confirmation_ui_1")
+                   mod_tab_confirmation_ui("tab_confirmation_ui_1"
+                   )
                ),
                
                tabPanel(

@@ -14,7 +14,7 @@ app_server <- function( input, output, session ) {
     admin = FALSE,
     stringsAsFactors = FALSE
   )
-  
+ 
   # call the server part
   # check_credentials returns a function to authenticate users
   res_auth <- shinymanager::secure_server(
@@ -46,9 +46,14 @@ app_server <- function( input, output, session ) {
                                            .default = col_character()))
   r_global$data_guests <- data_guests
   
+  r_global$donnee_utilisateur<- tibble(prenom= c("Antoine","Michele"),
+                                       sexe = c("H","F"),
+                                       enfants=0,
+                                       repas =T
+  )
   # Your application server logic 
   mod_tab_couple_server("tab_couple_ui_1", r_global = r_global)
-  mod_tab_confirmation_server("tab_confirmation_ui_1", r_global = r_global)
+  mod_tab_confirmation_server("tab_confirmation_ui_1", r_global = r_global,donnee_utilisateur = donnee_utilisateur)
   mod_tab_schedule_server("tab_schedule_ui_1", r_global = r_global)
   mod_tab_place_server("tab_place_ui_1", r_global = r_global)
   mod_tab_accommodation_server("tab_accommodation_ui_1", r_global = r_global)
