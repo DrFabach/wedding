@@ -12,7 +12,6 @@
 #' @importFrom shinyjs useShinyjs
 mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
   ns <- NS(id)
-  
   tagList(
     useShinyjs(),
     fluidRow(align = "center",
@@ -22,75 +21,26 @@ mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
     fluidRow(
       align = "center",
       tags$br(style = "line-height: 65px"),
-      h1("Confirmer ma venue / notre venue", style = "font-family: \'Bauer Bodoni Std 1\'; font-size:30px; letter-spacing:5px; color: black; text-align: center"),
-      h1(
-        "Merci d\'indiquer la pr\u00e9sence de chaque personne, y compris celle des enfants",
-        style = "font-family: \'Bauer Bodoni Std 1\'; font-size:15px; letter-spacing:2px; color: black; text-align: center"
-      ),
-      tags$br(style = "line-height: 40px"),
+      h1("Confirmation venue", style = "font-family: \'Bauer Bodoni Std 1\'; font-size:30px; letter-spacing:5px; color: black; text-align: center"),      tags$br(style = "line-height: 40px"),
     ),
-    uiOutput(ns("confirmation"))
-    
-    #   sidebarLayout(
-    #
-    #     sidebarPanel(
-    #
-    #       width = 5,
-    #
-    #
-    #
-    #
-    #
-    #       uiOutput(ns("show_input_teens_menu")),
-    #
-    #       uiOutput(ns("show_input_kids_menu")),
-    #
-    #       tags$br(style = "line-height: 20px"),
-    #
-    #       actionButton(
-    #         inputId = ns("save_info_guest"),
-    #         label = "Enregistrer mes choix pour cette personne *"
-    #       ),
-    #
-    #       tags$br(style = "line-height: 20px"),
-    #
-    #       tags$p("* Vous pourrez r\u00e9aliser de nouveau l\'op\u00e9ration pour ajouter une nouvelle personne", style = "font-size:15px; letter-spacing:3px; color: black"),
-    #
-    #     ),
-    #
-    #     mainPanel(
-    #
-    #       width = 7,
-    #
-    #       h1("R\u00e9capitulatif de vos informations", style = "font-size:20px"),
-    #
-    #       tags$br(style = "line-height: 20px"),
-    #
-    #       tableOutput(ns("summary_info_guest")),
-    #
-    #       tags$br(style = "line-height: 20px"),
-    #
-    #       fluidRow(
-    #         align = "center",
-    #         column(
-    #           width = 6,
-    #           actionButton(
-    #             inputId = ns("clean_last_info_guest"),
-    #             label = "Supprimer les derni\u00e8res informations enregistr\u00e9es"
-    #           )
-    #         ),
-    #         column(
-    #           width = 6,
-    #           actionButton(
-    #             inputId = ns("send_info_guest"),
-    #             label = "Envoyer mes choix aux mari\u00e9s"
-    #           )
-    #         )
-    #       )
-    #
-    #     )
-    #
-    # )
+    uiOutput(ns("confirmation")),
+    fluidRow(align="center",
+             
+             uiOutput(ns("enfant")),
+            shinyWidgets::actionBttn(
+               inputId = ns("save_info_guest"),
+               label = "Enregistrer mes choix",
+               style = "unite", 
+               color = "danger"
+             )
+             
+    ),
+  
+        actionButton(
+             inputId = ns("save_info_guest2"),
+             label = "Enregistrer mes choix "
+           ),
+   
   )
   
 }
@@ -124,18 +74,115 @@ mod_tab_confirmation_server <-
           )
         repas<- any(donnee_utilisateur$repas)
         # if(!repas)  shinyjs::hide(id = "here_dinner")
-        if(nb_invite==2)  shinyjs::hide(id = "accompagne")
-
+        
+        ui_invite<- renderUI({ tags$div(
+        
+          column(
+            3,
+            img(src = glue::glue("www/", ifelse(
+              is.na(prenom_femme),
+              "elle.png", "lui.png")))),
+          column(
+            9,
+      
+          br(),
+          textInput(
+            inputId = ns("name_2"),
+            label = "Prénom",
+            value = ifelse(nb_invite ==1 , "",ifelse(!is.na(prenom_femme),prenom_homme, prenom_femme
+            )),
+          ),
+          tags$br(style = "line-height: 20px"),
+          tags$p(
+            "Pr\u00e9sence aux diff\u00e9rents moments du mariage",
+            style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
+          ),
+          br(),
+          shinyWidgets::materialSwitch(
+            inputId = "here_cocktail_2",
+            label = "Vin d'honneur",
+            value = F,
+            status = "success",
+            right = TRUE
+          ),
+       
+          shinyWidgets::materialSwitch(
+            inputId = "here_dinner_2",
+            label = "Repas",
+            value = F,
+            status = "success",
+            right = TRUE
+          ),
+          shinyWidgets::materialSwitch(
+            inputId = "here_brunch_2",
+            label = "Brunch du dimanche",
+            value = F,
+            status = "success",
+            right = TRUE
+          ),
+          tags$br(style = "line-height: 20px"),
+          textInput(
+            inputId = ns("special_diet_2"),
+            label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
+            placeholder = "Indiquer ici les r\u00e9gimes"
+          ),
+          textInput(
+            inputId = ns("film_2"),
+            label = "Film préféré",
+            placeholder = "Indiquer le meilleur film de tous les temps"
           
- 
+        )))
+        })
+  
+        
+        if (nb_invite==1) {
+
+                  output$quest_invite_supp <- renderUI({
+
+                    tags$div(
+                   
+                      shinyWidgets::materialSwitch(
+                        inputId = ns("accompagne"),
+                        label = "Je viens accompagné(e)",
+                        value = F,
+                        status = "success",
+                        right = TRUE
+                      ))
+                  })
+                  
+
+                  observeEvent(input$accompagne, ignoreInit = TRUE, {
+                    print(input$accompagne )
+                    if(input$accompagne){
+                      output$invite_supp<-ui_invite
+                    }else{
+                      output$invite_supp<-NULL
+                    
+                    }
+                    
+                    
+                  })
+
+        }else{
+                  
+        output$invite_supp<-ui_invite
+        shinyjs::hide(id = "quest_invite_supp")
+                } 
+       
+
         
         output$confirmation <- renderUI({
          fluidPage( column(
             6,
-            align = "center",
+            align = "left",
+            column(
+              3,
             img(src = glue::glue("www/", ifelse(
               !is.na(prenom_femme),
-              "elle.png", "lui.png"))),
+              "elle.png", "lui.png")))),
+            column(
+                9,
+          
               br(),
               textInput(
                 inputId = ns("name"),
@@ -144,7 +191,6 @@ mod_tab_confirmation_server <-
                 ),
               ),
               tags$br(style = "line-height: 20px"),
-              
               tags$p(
                 "Pr\u00e9sence aux diff\u00e9rents moments du mariage",
                 style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
@@ -157,7 +203,7 @@ mod_tab_confirmation_server <-
                 status = "success",
                 right = TRUE
               ),
-              br(),
+           
               shinyWidgets::materialSwitch(
                 inputId = "here_dinner",
                 label = "Repas",
@@ -165,7 +211,6 @@ mod_tab_confirmation_server <-
                 status = "success",
                 right = TRUE
               ),
-
               shinyWidgets::materialSwitch(
                 inputId = "here_brunch",
                 label = "Brunch du dimanche",
@@ -173,70 +218,29 @@ mod_tab_confirmation_server <-
                 status = "success",
                 right = TRUE
               ),
-              
-            
-          
-            
-            
             tags$br(style = "line-height: 20px"),
-            
             textInput(
               inputId = ns("special_diet"),
               label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
               placeholder = "Indiquer ici les r\u00e9gimes"
+            ),
+            textInput(
+              inputId = ns("film"),
+              label = "Film préféré",
+              placeholder = "Indiquer le meilleur film de tous les temps"
             )
-            
+            )),
           
-          ),
+            
           column(
             6,
-            align = "center",
-            shinyWidgets::materialSwitch(
-              inputId = ns("accompagne"),
-              label = "Je viens accompagné(e)",
-              value = F,
-              status = "success",
-              right = TRUE
-            ),
-            img(src = glue::glue("www/", "lui.png")),
-            br(),
-            textInput(
-              inputId = ns("name"),
-              label = "Prénom",
-              value = prenom_homme
-            ),
-            
-            tags$br(style = "line-height: 20px"),
-            
-            tags$p(
-              "Pr\u00e9sence aux diff\u00e9rents moments du mariage",
-              style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
-            ),
-            br(),
-            shinyWidgets::materialSwitch(
-              inputId = "here_cocktail_2",
-              label = "Vin d'honneur",
-              value = F,
-              status = "success",
-              right = TRUE
-            ),
-            br(),
-            shinyWidgets::materialSwitch(
-              inputId = "here_dinner_2",
-              label = "Repas",
-              value = F,
-              status = "success",
-              right = TRUE
-            ),
-            br(),
-            shinyWidgets::materialSwitch(
-              inputId = "here_brunch_2",
-              label = "Brunch du dimanche",
-              value = F,
-              status = "success",
-              right = TRUE
-            ))
+            align = "left",
           
+            uiOutput(ns("quest_invite_supp")),
+            uiOutput(ns("invite_supp")) # ui3
+            
+            
+          )  
          )
         
         })
@@ -448,8 +452,18 @@ mod_tab_confirmation_server <-
     # mod_tab_confirmation_server("tab_confirmation_ui_1")
     
     
-    mod_tab_confirmation_ui
-    mod_tab_confirmation_server
+    # mod_tab_confirmation_ui
+    # mod_tab_confirmation_server
+ 
+    
+    
+    donnee_utilisateur <- tibble(
+      prenom = c("Antoine", "Michele"),
+      sexe = c("H", "F"),
+      enfants = 0,
+      repas = T
+    )
+    donnee_utilisateur<-donnee_utilisateur%>%slice(2)
     ui <- fluidPage(mod_tab_confirmation_ui(1))
     
     server <- function(input, output, session) {
@@ -458,11 +472,3 @@ mod_tab_confirmation_server <-
     }
     
     shinyApp(ui, server)
-    
-    donnee_utilisateur <- tibble(
-      prenom = c("Antoine", "Michele"),
-      sexe = c("H", "F"),
-      enfants = 0,
-      repas = T
-    )
-    
