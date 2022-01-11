@@ -46,6 +46,11 @@ app_server <- function( input, output, session ) {
                                            .default = col_character()))
   r_global$data_guests <- data_guests
   
+  googledrive::drive_download("site_mariage/new_data_guests_reponse.csv", path = glue::glue(temp_dir, "/data_guests_2.csv"), overwrite = TRUE)
+  data_guests_2 <- read_csv(glue::glue(temp_dir, "/data_guests_2.csv"), 
+                          locale = locale(decimal_mark = ","))
+  r_global$data_guests_2<-data_guests_2
+  
   r_global$donnee_utilisateur<- tibble(prenom= c("Antoine","Michele"),
                                        sexe = c("H","F"),
                                        enfants=0,

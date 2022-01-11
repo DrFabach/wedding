@@ -25,21 +25,12 @@
 #'                             data_guests = data_guests_example)
 add_info_guests_in_database <- function(info_to_add, data_guests) {
   
-  names_guests_to_add <- info_to_add %>% 
-    distinct(name) %>% 
-    pull(name)
-  
-  data_guests_to_add  <- data_guests %>% 
-    filter(name %in% names_guests_to_add) %>% 
-    select(name, type, table, announcement) %>% 
-    left_join(info_to_add,
-              by = "name")
+ 
+
   
   new_data_guests <- data_guests %>% 
-    filter(!(name %in% names_guests_to_add)) %>% 
-    bind_rows(data_guests_to_add) %>% 
-    arrange(table)
-  
+ 
+    bind_rows(info_to_add)  
   return(new_data_guests)
   
 }

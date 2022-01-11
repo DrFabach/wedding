@@ -25,8 +25,19 @@ mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
     ),
     uiOutput(ns("confirmation")),
     fluidRow(align="center",
-             
              uiOutput(ns("enfant")),
+             htmltools::tagAppendAttributes(
+             shinyWidgets::materialSwitch(
+               inputId = ns("ceremonie"),
+               label = "Souhaitons participer activement à la cérémonie",
+               value = F,
+               status = "success",
+               right = TRUE
+             ) ,  style = "text-align: initial;"
+             )),
+    fluidRow(align="center",
+             
+          
             shinyWidgets::actionBttn(
                inputId = ns("save_info_guest"),
                label = "Enregistrer mes choix",
@@ -34,12 +45,7 @@ mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
                color = "danger"
              )
              
-    ),
-  
-        actionButton(
-             inputId = ns("save_info_guest2"),
-             label = "Enregistrer mes choix "
-           ),
+    )
    
   )
   
@@ -55,10 +61,11 @@ mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
 #' @noRd
 mod_tab_confirmation_server <-
   function(id, r_global, donnee_utilisateur) {
-    moduleServer(id, function(input, output, session) {
-   
     
-        
+    moduleServer(id, function(input, output, session) {
+      ns <- session$ns
+      nom_famille<- donnee_utilisateur$nom[1]
+      nb_enfants<- donnee_utilisateur$enfants[1]
         nb_invite <- dim(donnee_utilisateur)[1]
         prenom_femme <-
           ifelse(
@@ -123,8 +130,8 @@ mod_tab_confirmation_server <-
           tags$br(style = "line-height: 20px"),
           textInput(
             inputId = ns("special_diet_2"),
-            label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
-            placeholder = "Indiquer ici les r\u00e9gimes"
+            label = "R\u00e9gime alimentaire particulier ",
+            placeholder = "allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc."
           ),
           textInput(
             inputId = ns("film_2"),
@@ -134,7 +141,22 @@ mod_tab_confirmation_server <-
         )))
         })
   
-        
+        if(nb_enfants >0){
+          output$enfant <- renderUI({
+            
+            htmltools::tagAppendAttributes(
+       
+            shinyWidgets::materialSwitch(
+              inputId = ("enfant_1"),
+              label = "Je viens avec mes enfants", 
+              value = TRUE,
+              right = TRUE,
+              status = "success"
+            ) ,  style = "text-align: initial;")
+            
+            
+          })
+        }
         if (nb_invite==1) {
 
                   output$quest_invite_supp <- renderUI({
@@ -197,7 +219,7 @@ mod_tab_confirmation_server <-
               ),
               br(),
               shinyWidgets::materialSwitch(
-                inputId = "here_cocktail",
+                inputId = ns("here_cocktail"),
                 label = "Vin d'honneur",
                 value = F,
                 status = "success",
@@ -205,7 +227,7 @@ mod_tab_confirmation_server <-
               ),
            
               shinyWidgets::materialSwitch(
-                inputId = "here_dinner",
+                inputId = ns("here_dinner"),
                 label = "Repas",
                 value = F,
                 status = "success",
@@ -221,8 +243,8 @@ mod_tab_confirmation_server <-
             tags$br(style = "line-height: 20px"),
             textInput(
               inputId = ns("special_diet"),
-              label = "R\u00e9gime alimentaire particulier (allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc.)",
-              placeholder = "Indiquer ici les r\u00e9gimes"
+              label = "R\u00e9gime alimentaire particulier",
+              placeholder = "allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc."
             ),
             textInput(
               inputId = ns("film"),
@@ -244,35 +266,66 @@ mod_tab_confirmation_server <-
          )
         
         })
-    ns <- session$ns
+   
     
     # Local reactive values - stay in the module
     r_local <- reactiveValues()
     
     r_local$info <- tibble(
-      name = character(),
-      here_cocktail = character(),
-      here_diner = character(),
-      here_sunday = character(),
-      special_diet = character(),
-      menu_diner = character(),
-      time_confirmation = as.character()
-    )
+      name = character()
+      # ,
+      # nom = nom_famille,
+      # here_cocktail  = character(),
+      # here_dinner = character(),
+      # here_brunch = character(),
+      # enfant=character(),
+      # special_diet  = character(),
+      # film =   character(),
+      # ceremonie= character(),
+      # date= character()
+      )
+  
+    observeEvent(input$save_info_guest, {
+      r_local$name <- c(input$here_cocktail,input$here_cocktail_2)%>%as.character()
+      r_local$info<-r_local$info%>%add_row(
+      name= r_local$name
+# 
+#       here_cocktail=  ,
+#       here_dinner = c(input$here_dinner,input$here_dinner_2)%>%as.character(),
+#       here_brunch =c(input$here_brunch,input$here_brunch_2)%>%as.character(),
+#       special_diet=  c(input$special_diet,input$special_diet_2)%>%as.character(),
+#       film =   c(input$film, input$film_2)%>%as.character(),
+#       enfant =   input$enfant%>%as.character(),
+#       ceremonie = input$ceremonie%>%as.character(),
+#       date = Sys.Date()%>%as.character()
+      )
+      print(c(input$name, input$name_2)
+            )
+      print(r_local$info)
+ #      print(
+ #            input$name)
+      # Construct the new database
+      r_global$data_guests_2 <-
+        add_info_guests_in_database(info_to_add = r_local$info,
+                                    data_guests = r_global$data_guests_2)
+
+      
+      # Upload the new database
+      temp_dir <- tempdir()
+   
+      readr::write_csv(r_global$data_guests_2,
+                       glue::glue(temp_dir, "/newdata_guests_2"))
+      googledrive::drive_update("site_mariage/new_data_guests_reponse.csv",
+                                glue::glue(temp_dir, "/newdata_guests_2"))
+
+
+
+      
+    })
     
-    # Update input list guest according to data
-    # observeEvent(TRUE, once = TRUE, {
-    #
-    #   updateSelectInput(
-    #     session = session,
-    #     inputId = "name",
-    #     choices = c("Choisir dans la liste la personne", r_global$data_guests %>% distinct(name) %>% pull()),
-    #     selected = "Choisir dans la liste la personne"
-    #     )
-    #
-    # })
-    
-    # Find info about guest in data and update selectinput menu according to guest type adult/teen/kid
-    observeEvent(input$name, ignoreInit = TRUE, {
+   observeEvent(input$name, ignoreInit = TRUE, {
+     # print(
+     #   input$name)
       # req(input$name != "Choisir dans la liste la personne")
       # req(r_global$data_guests)
       #
@@ -320,126 +373,45 @@ mod_tab_confirmation_server <-
     })
     
     # Click on save choice / add info to sumamry tibble
-    observeEvent(input$save_info_guest, {
-      r_local$name <- input$name
-      r_local$here_cocktail <- input$here_cocktail
-      r_local$here_diner <- input$here_diner
-      r_local$here_sunday <- input$here_sunday
-      r_local$special_diet <- input$special_diet
-      
-      if (r_local$type_guest == "Adulte") {
-        r_local$menu_diner <- "Menu adulte"
-        
-      } else if (r_local$type_guest == "Ado") {
-        r_local$menu_diner <- input$teens_menu
-        
-      } else if (r_local$type_guest == "Enfant") {
-        r_local$menu_diner <- input$kids_menu
-        
-      }
-      
-      if (r_local$here_diner == "Non") {
-        r_local$menu_diner <- NA_character_
-        
-      }
-      
-      r_local$info <- r_local$info %>%
-        add_row(
-          name = r_local$name,
-          here_cocktail = r_local$here_cocktail,
-          here_diner = r_local$here_diner,
-          here_sunday = r_local$here_sunday,
-          special_diet = r_local$special_diet,
-          menu_diner = r_local$menu_diner,
-          time_confirmation = as.character(Sys.time())
-        )
-      
-      reset("name")
-      reset("here_cocktail")
-      reset("here_diner")
-      reset("here_sunday")
-      reset("special_diet")
-      
-    })
+  
     
     # Delete last line
-    observeEvent(input$clean_last_info_guest, {
-      n_lines <- nrow(r_local$info)
-      r_local$info <- r_local$info %>%
-        top_n(n = -(n_lines - 1))
-      
-    })
+    # observeEvent(input$clean_last_info_guest, {
+    #   n_lines <- nrow(r_local$info)
+    #   r_local$info <- r_local$info %>%
+    #     top_n(n = -(n_lines - 1))
+    #   
+    # })
     
     # Table summarising info
-    output$summary_info_guest <- renderTable({
-      r_local$info %>%
-        select(-time_confirmation) %>%
-        rename(stats::setNames(
-          c(
-            "name",
-            "here_cocktail",
-            "here_diner",
-            "here_sunday",
-            "special_diet",
-            "menu_diner"
-          ),
-          c(
-            "Nom",
-            "Pr\u00e9sence vin d\'honneur",
-            "Pr\u00e9sence d\u00eener",
-            "Pr\u00e9sence retour",
-            "R\u00e9gime particulier",
-            "Menu pour le d\u00eener"
-          )
-        ))
-      
-    })
+    # output$summary_info_guest <- renderTable({
+    #   r_local$info %>%
+    #     select(-time_confirmation) %>%
+    #     rename(stats::setNames(
+    #       c(
+    #         "name",
+    #         "here_cocktail",
+    #         "here_diner",
+    #         "here_sunday",
+    #         "special_diet",
+    #         "menu_diner"
+    #       ),
+    #       c(
+    #         "Nom",
+    #         "Pr\u00e9sence vin d\'honneur",
+    #         "Pr\u00e9sence d\u00eener",
+    #         "Pr\u00e9sence retour",
+    #         "R\u00e9gime particulier",
+    #         "Menu pour le d\u00eener"
+    #       )
+    #     ))
+    #   
+    # })
     
     # Save info
     observeEvent(input$send_info_guest, {
       # Verify if info about guests is already in the database
-      vec_guests_already_answer <- r_global$data_guests %>%
-        filter(!is.na(here_cocktail) &
-                 !is.na(here_diner) & !is.na(here_sunday)) %>%
-        pull(name)
-      
-      vec_guests_to_send <- r_local$info %>%
-        pull(name)
-      
-      if (any(vec_guests_to_send %in% vec_guests_already_answer)) {
-        showNotification(ui = "Les informations de certains invit\u00e9s avaient d\u00e9j\u00e0 \u00e9t\u00e9 envoy\u00e9es aux mari\u00e9s. Elles ont \u00e9t\u00e9 remplac\u00e9es par celles que vous venez de renseigner.",
-                         type = "default")
-        
-      }
-      
-      # Verify if there are doubles - if yes, delete them
-      
-      if (any(duplicated(vec_guests_to_send))) {
-        showNotification(ui = "Vous avez renseign\u00e9 des doublons d\'informations pour la m\u00eame personne. Seules les derni\u00e8res seront conserv\u00e9es.",
-                         type = "default")
-        
-        r_local$info <- r_local$info %>%
-          group_by(name) %>%
-          top_n(1)
-        
-      }
-      
-      # Construct the new database
-      r_global$data_guests <-
-        add_info_guests_in_database(info_to_add = r_local$info,
-                                    data_guests = r_global$data_guests)
-      
-      # Show notification
-      showNotification(ui = "Vos informations ont bien \u00e9t\u00e9 envoy\u00e9es aux mari\u00e9s.",
-                       type = "default")
-      
-      # Upload the new database
-      temp_dir <- tempdir()
-      readr::write_csv(r_global$data_guests,
-                       glue::glue(temp_dir, "/new_data_guests.csv"))
-      googledrive::drive_update("data_guests",
-                                glue::glue(temp_dir, "/new_data_guests.csv"))
-      
+     
     })
     
       })
@@ -456,19 +428,21 @@ mod_tab_confirmation_server <-
     # mod_tab_confirmation_server
  
     
-    
-    donnee_utilisateur <- tibble(
-      prenom = c("Antoine", "Michele"),
-      sexe = c("H", "F"),
-      enfants = 0,
-      repas = T
-    )
-    donnee_utilisateur<-donnee_utilisateur%>%slice(2)
-    ui <- fluidPage(mod_tab_confirmation_ui(1))
-    
-    server <- function(input, output, session) {
-      mod_tab_confirmation_server(1, r_global = r_global, donnee_utilisateur =
-                                    donnee_utilisateur)
-    }
-    
-    shinyApp(ui, server)
+    # 
+    # donnee_utilisateur <- tibble(
+    #   prenom = c("Antoine", "Michele"),
+    #   nom= "fabacher",
+    #   sexe = c("H", "F"),
+    #   enfants = 1,
+    #   repas = T
+    # )
+    # 
+    # donnee_utilisateur<-donnee_utilisateur%>%slice(2)
+    # ui <- fluidPage(mod_tab_confirmation_ui(1))
+    # 
+    # server <- function(input, output, session) {
+    #   mod_tab_confirmation_server(1, r_global = r_global, donnee_utilisateur =
+    #                                 donnee_utilisateur)
+    # }
+    # 
+    # shinyApp(ui, server)
