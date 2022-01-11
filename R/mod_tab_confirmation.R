@@ -147,7 +147,7 @@ mod_tab_confirmation_server <-
             htmltools::tagAppendAttributes(
        
             shinyWidgets::materialSwitch(
-              inputId = ("enfant_1"),
+              inputId = ns("enfant_1"),
               label = "Je viens avec mes enfants", 
               value = TRUE,
               right = TRUE,
@@ -234,7 +234,7 @@ mod_tab_confirmation_server <-
                 right = TRUE
               ),
               shinyWidgets::materialSwitch(
-                inputId = "here_brunch",
+                inputId = ns("here_brunch"),
                 label = "Brunch du dimanche",
                 value = F,
                 status = "success",
@@ -272,36 +272,51 @@ mod_tab_confirmation_server <-
     r_local <- reactiveValues()
     
     r_local$info <- tibble(
-      name = character()
-      # ,
-      # nom = nom_famille,
-      # here_cocktail  = character(),
-      # here_dinner = character(),
-      # here_brunch = character(),
-      # enfant=character(),
-      # special_diet  = character(),
-      # film =   character(),
-      # ceremonie= character(),
-      # date= character()
+      prenom = character(),
+      nom = character(),
+      here_cocktail  = character(),
+      here_dinner = character(),
+      here_brunch = character(),
+      enfant=character(),
+      special_diet  = character(),
+      film =   character(),
+      ceremonie= character(),
+      date= character()
       )
   
     observeEvent(input$save_info_guest, {
-      r_local$name <- c(input$here_cocktail,input$here_cocktail_2)%>%as.character()
+      r_local$name <- c(input$name,input$name_2)%>%as.character()
+      r_local$here_cocktail= c(input$here_cocktail,input$here_cocktail_2)%>%as.character() 
+            r_local$here_dinner = c(input$here_dinner,input$here_dinner_2)%>%as.character()
+            r_local$here_brunch =c(input$here_brunch,input$here_brunch_2)%>%as.character()
+            r_local$special_diet=  c(input$special_diet,input$special_diet_2)%>%as.character()
+            r_local$film =   c(input$film, input$film_2)%>%as.character()
+            r_local$enfant =   input$enfant_1%>%as.character()
+            r_local$ceremonie = input$ceremonie%>%as.character()
+            r_local$date = Sys.time()%>%as.character()
+            
       r_local$info<-r_local$info%>%add_row(
-      name= r_local$name
-# 
-#       here_cocktail=  ,
-#       here_dinner = c(input$here_dinner,input$here_dinner_2)%>%as.character(),
-#       here_brunch =c(input$here_brunch,input$here_brunch_2)%>%as.character(),
-#       special_diet=  c(input$special_diet,input$special_diet_2)%>%as.character(),
-#       film =   c(input$film, input$film_2)%>%as.character(),
-#       enfant =   input$enfant%>%as.character(),
-#       ceremonie = input$ceremonie%>%as.character(),
-#       date = Sys.Date()%>%as.character()
+      prenom= r_local$name,
+      nom = nom_famille,
+      here_cocktail= r_local$here_cocktail,
+      here_dinner = r_local$here_dinner ,
+      here_brunch =r_local$here_brunch,
+      special_diet=  r_local$special_diet,
+      film =   r_local$film ,
+      enfant =   r_local$enfant,
+      ceremonie =r_local$ceremonie,
+      date = r_local$date
       )
-      print(c(input$name, input$name_2)
-            )
-      print(r_local$info)
+      print(data.frame( name= r_local$name%>%length(),
+                        here_cocktail= r_local$here_cocktail%>%length(),
+                        here_dinner = r_local$here_dinner%>%length() ,
+                        here_brunch =r_local$here_brunch%>%length(),
+                        special_diet=  r_local$special_diet%>%length(),
+                        film =   r_local$film%>%length() ,
+                        enfant =   r_local$enfant%>%length(),
+                        ceremonie =r_local$ceremonie%>%length(),
+                        date = r_local$date%>%length()))
+      print(r_local$info%>%slice(1))
  #      print(
  #            input$name)
       # Construct the new database
@@ -428,21 +443,21 @@ mod_tab_confirmation_server <-
     # mod_tab_confirmation_server
  
     
-    # 
-    # donnee_utilisateur <- tibble(
-    #   prenom = c("Antoine", "Michele"),
-    #   nom= "fabacher",
-    #   sexe = c("H", "F"),
-    #   enfants = 1,
-    #   repas = T
-    # )
-    # 
-    # donnee_utilisateur<-donnee_utilisateur%>%slice(2)
-    # ui <- fluidPage(mod_tab_confirmation_ui(1))
-    # 
-    # server <- function(input, output, session) {
-    #   mod_tab_confirmation_server(1, r_global = r_global, donnee_utilisateur =
-    #                                 donnee_utilisateur)
-    # }
-    # 
-    # shinyApp(ui, server)
+
+    donnee_utilisateur <- tibble(
+      prenom = c("Antoine", "Michele"),
+      nom= "fabacher",
+      sexe = c("H", "F"),
+      enfants = 1,
+      repas = T
+    )
+
+    donnee_utilisateur<-donnee_utilisateur%>%slice(2)
+    ui <- fluidPage(mod_tab_confirmation_ui(1))
+
+    server <- function(input, output, session) {
+      mod_tab_confirmation_server(1, r_global = r_global, donnee_utilisateur =
+                                    donnee_utilisateur)
+    }
+
+    shinyApp(ui, server)
