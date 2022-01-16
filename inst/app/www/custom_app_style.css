@@ -73,7 +73,7 @@ html,body{
 
 .landing-wrapper .landing-block{
     width: 100%;
-    height: 100vh;
+    height: 100%;
 /*    opacity: 0.9;*/
 }
 
@@ -83,8 +83,8 @@ html,body{
 }
 
 .landing-wrapper .foreground-content{
-    position: absolute;
-    top: 10%;
+ position: absolute;
+top: 100px;
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -92,20 +92,35 @@ html,body{
 }
 
 .landing-wrapper .foreground-content .foreground-text{
-    width: 50%;
-    padding: 4%;
-    color: black;
-    background-color: white;
-    text-align: center;
+ /*    width: 50%;*/
+width: 50%;
+padding: 4%;
+color: black;
+background-color: #ffffff94;
+text-align: center;
+margin-top: 50px;
+position: absolute;
+top: 4%;
 }
 
-.landing-wrapper .decompte{
-  position: absolute;
-    top: 10%;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.landing-wrapper .decompte-content{
+position: absolute;
+top: 80%;
+z-index: 9999;
+display: flex;
+justify-content: center;
+align-items: left;
+height: auto;
+width: inherit;
+left: 2%;
+}
+
+.landing-wrapper .decompte-content .decompte-text{
+ /*    width: 50%;*/
+padding: 4%;
+color: black;
+background-color: #ffffff47;
+text-align: left;
 }
 /* Password textbox hidden tab couple */
 #hidden_tab_preparations_ui_1-password_tab_preparation {

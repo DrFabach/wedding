@@ -7,7 +7,7 @@
 #' 
 #' @noRd
 app_server <- function( input, output, session ) {
-  if(T){
+  if(F){
   credentials <- data.frame(
     user = c("antoine","michele"), # mandatory
     password = c("fabacher","fabacher"), # mandatory

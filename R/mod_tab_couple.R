@@ -13,14 +13,14 @@ mod_tab_couple_ui <- function(id){
   ns <- NS(id)
   
   tagList(
-    
+   
     # parent container
     tags$div(class = "landing-wrapper",
              
              # Image fond d'écran
              tags$div(class = "landing-block background-content",
                       
-                      img(src = glue::glue("www/", "wedding-background-2-compressed.jpeg"))
+                      img(src = glue::glue("www/", "1ere_page_comp.jpg"), width = '100%')
                       
              ),
              
@@ -37,14 +37,16 @@ mod_tab_couple_ui <- function(id){
              # Décomptes
              
              
-               
+             tags$div(class = "landing-block decompte-content",
+                      tags$div(class = "decompte-text",
                textOutput(
                  outputId = ns("decompte_vie_commune")
                  ),
               
                textOutput(
                  outputId = ns("decompte_mariage")
-               ),     
+               )   )  )
+             
     )
   )
   
@@ -62,7 +64,7 @@ mod_tab_couple_server <- function(id, r_global){
     output$decompte_vie_commune <- renderText({
       
       get_count_countdown_moments(start_moment = "2010-06-11 15:00:00",
-                                  end_moment = now(tzone = "Europe/Paris"),
+                                  end_moment = lubridate::now(tzone = "Europe/Paris"),
                                   text = "depuis leur rencontre",
                                   time_zone = "Europe/Paris",
                                   language = "fr")
@@ -71,7 +73,7 @@ mod_tab_couple_server <- function(id, r_global){
     
     output$decompte_mariage <- renderText({
 
-      get_count_countdown_moments(start_moment = now(tzone = "Europe/Paris"),
+      get_count_countdown_moments(start_moment = lubridate::now(tzone = "Europe/Paris"),
                                   end_moment = "2022-06-11 15:00:00",
                                   text = "jusqu'au mariage",
                                   time_zone = "Europe/Paris",
@@ -80,7 +82,15 @@ mod_tab_couple_server <- function(id, r_global){
     
   })
 }
-    
+
+
+# ui <- fluidPage(mod_tab_couple_ui(1))
+# 
+# server <- function(input, output, session) {
+#   mod_tab_couple_server(1, r_global = r_global)
+# }
+# 
+# shinyApp(ui, server)    
 ## To be copied in the UI
 # mod_tab_couple_ui("tab_couple_ui_1")
     

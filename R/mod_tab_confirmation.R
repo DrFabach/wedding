@@ -16,7 +16,7 @@ mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
     useShinyjs(),
     fluidRow(align = "center",
              img(
-               src = glue::glue("www/", "confirmation.jpg")
+               src = glue::glue("www/", "confirmation-2.jpg")
              )),
     fluidRow(
       align = "center",
@@ -106,7 +106,7 @@ mod_tab_confirmation_server <-
           ),
           br(),
           shinyWidgets::materialSwitch(
-            inputId = "here_cocktail_2",
+            inputId = ns("here_cocktail_2"),
             label = "Vin d'honneur",
             value = F,
             status = "success",
@@ -114,14 +114,14 @@ mod_tab_confirmation_server <-
           ),
        
           shinyWidgets::materialSwitch(
-            inputId = "here_dinner_2",
+            inputId = ns("here_dinner_2"),
             label = "Repas",
             value = F,
             status = "success",
             right = TRUE
           ),
           shinyWidgets::materialSwitch(
-            inputId = "here_brunch_2",
+            inputId = ns("here_brunch_2"),
             label = "Brunch du dimanche",
             value = F,
             status = "success",
