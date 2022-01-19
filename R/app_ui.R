@@ -76,8 +76,8 @@ golem_add_external_resources <- function(){
   set_labels(
     language = "en",
     "Please authenticate" = "Site du Marriage de Barbara & Thibaut",
-    "Username:" = "Prénom en minuscule",
-    "Password:" = "Nom de famille en minuscule",
+    "Username:" = "Prénom en minuscule et sans accent",
+    "Password:" = "Nom de famille en minuscule et sans accent",
     "Login" = "Connexion",
     "Username or password are incorrect" = "L\'identifiant ou le mot de passe est incorrect"
   )

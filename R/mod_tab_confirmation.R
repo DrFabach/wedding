@@ -174,7 +174,7 @@ mod_tab_confirmation_server <-
                   
 
                   observeEvent(input$accompagne, ignoreInit = TRUE, {
-                    print(input$accompagne )
+                    print(r_global$print$id )
                     if(input$accompagne){
                       output$invite_supp<-ui_invite
                     }else{
@@ -194,6 +194,7 @@ mod_tab_confirmation_server <-
 
         
         output$confirmation <- renderUI({
+          
          fluidPage( column(
             6,
             align = "left",

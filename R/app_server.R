@@ -7,12 +7,13 @@
 #' 
 #' @noRd
 app_server <- function( input, output, session ) {
-  if(F){
+  if(T){
   credentials <- data.frame(
     user = c("antoine","michele"), # mandatory
     password = c("fabacher","fabacher"), # mandatory
     admin = FALSE,
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE,
+    id =c(1,2)
   )
  
   # call the server part
@@ -21,14 +22,16 @@ app_server <- function( input, output, session ) {
     check_credentials = shinymanager::check_credentials(credentials),
   keep_token = T
   )
-  print(res_auth)
+  
   output$auth_output <- renderPrint({
+    print(res_auth$user_info)
+    print(res_auth())
     reactiveValuesToList(res_auth)
   })
   }
   # Reactive values
   r_global <- reactiveValues()
-    
+  r_global$print<-(res_auth)
   # Data on google drive
   googledrive::drive_auth(cache = ".secrets",
                           email = Sys.getenv("GOOGLE_MAIL"))
