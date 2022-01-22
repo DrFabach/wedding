@@ -10,7 +10,7 @@
 #'
 #' @importFrom shiny NS tagList
 #' @importFrom shinyjs useShinyjs
-mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
+mod_tab_confirmation_ui <- function(id) {
   ns <- NS(id)
   tagList(
     useShinyjs(),
@@ -60,28 +60,34 @@ mod_tab_confirmation_ui <- function(id, donnee_utilisateur) {
 #'
 #' @noRd
 mod_tab_confirmation_server <-
-  function(id, r_global, donnee_utilisateur) {
-    
+  function(id, r_global) {
     moduleServer(id, function(input, output, session) {
+      
       ns <- session$ns
-      nom_famille<- donnee_utilisateur$nom[1]
-      nb_enfants<- donnee_utilisateur$enfants[1]
-        nb_invite <- dim(donnee_utilisateur)[1]
-        prenom_femme <-
+      BDD<-reactive(r_global$donnee_utilisateur())
+      observeEvent(BDD,{
+        print(r_global$donnee_utilisateur())
+        print(BDD)
+        data<-BDD()
+      
+      
+      nb_enfants<- (data$enfants[1])
+        nb_invite <- (dim(data)[1])
+        prenom_femme <-(
           ifelse(
-            any(donnee_utilisateur$sexe == "F"),
-            donnee_utilisateur %>% filter(sexe == "F") %>% pull(prenom),
+            any(data$sexe == "F"),
+            data %>% filter(sexe == "F") %>% pull(prenom),
             NA
-          )
-        prenom_homme <-
+          ))
+        prenom_homme <-(
           ifelse(
-            any(donnee_utilisateur$sexe == "H"),
-            donnee_utilisateur %>% filter(sexe == "H") %>% pull(prenom),
+            any(data$sexe == "H"),
+            data %>% filter(sexe == "H") %>% pull(prenom),
             NA
-          )
-        repas<- any(donnee_utilisateur$repas)
+          ))
+        repas<- (any(data$repas))
         # if(!repas)  shinyjs::hide(id = "here_dinner")
-        
+       
         ui_invite<- renderUI({ tags$div(
         
           column(
@@ -268,7 +274,7 @@ mod_tab_confirmation_server <-
         
         })
    
-    
+        })
     # Local reactive values - stay in the module
     r_local <- reactiveValues()
     
@@ -298,7 +304,7 @@ mod_tab_confirmation_server <-
             
       r_local$info<-r_local$info%>%add_row(
       prenom= r_local$name,
-      nom = nom_famille,
+      nom =  (data$nom[1]),
       here_cocktail= r_local$here_cocktail,
       here_dinner = r_local$here_dinner ,
       here_brunch =r_local$here_brunch,
@@ -388,47 +394,9 @@ mod_tab_confirmation_server <-
       #
     })
     
-    # Click on save choice / add info to sumamry tibble
-  
+   
     
-    # Delete last line
-    # observeEvent(input$clean_last_info_guest, {
-    #   n_lines <- nrow(r_local$info)
-    #   r_local$info <- r_local$info %>%
-    #     top_n(n = -(n_lines - 1))
-    #   
-    # })
-    
-    # Table summarising info
-    # output$summary_info_guest <- renderTable({
-    #   r_local$info %>%
-    #     select(-time_confirmation) %>%
-    #     rename(stats::setNames(
-    #       c(
-    #         "name",
-    #         "here_cocktail",
-    #         "here_diner",
-    #         "here_sunday",
-    #         "special_diet",
-    #         "menu_diner"
-    #       ),
-    #       c(
-    #         "Nom",
-    #         "Pr\u00e9sence vin d\'honneur",
-    #         "Pr\u00e9sence d\u00eener",
-    #         "Pr\u00e9sence retour",
-    #         "R\u00e9gime particulier",
-    #         "Menu pour le d\u00eener"
-    #       )
-    #     ))
-    #   
-    # })
-    
-    # Save info
-    observeEvent(input$send_info_guest, {
-      # Verify if info about guests is already in the database
-     
-    })
+
     
       })
     }
@@ -445,20 +413,20 @@ mod_tab_confirmation_server <-
  
     
 
-    donnee_utilisateur <- tibble(
-      prenom = c("Antoine", "Michele"),
-      nom= "fabacher",
-      sexe = c("H", "F"),
-      enfants = 1,
-      repas = T
-    )
-
-    donnee_utilisateur<-donnee_utilisateur%>%slice(2)
-    ui <- fluidPage(mod_tab_confirmation_ui(1))
-
-    server <- function(input, output, session) {
-      mod_tab_confirmation_server(1, r_global = r_global, donnee_utilisateur =
-                                    donnee_utilisateur)
-    }
-
-    shinyApp(ui, server)
+    # donnee_utilisateur <- tibble(
+    #   prenom = c("Antoine", "Michele"),
+    #   nom= "fabacher",
+    #   sexe = c("H", "F"),
+    #   enfants = 1,
+    #   repas = T
+    # )
+    # 
+    # donnee_utilisateur<-donnee_utilisateur%>%slice(2)
+    # ui <- fluidPage(mod_tab_confirmation_ui(1))
+    # 
+    # server <- function(input, output, session) {
+    #   mod_tab_confirmation_server(1, r_global = r_global, donnee_utilisateur =
+    #                                 donnee_utilisateur)
+    # }
+    # 
+    # shinyApp(ui, server)
