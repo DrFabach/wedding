@@ -65,7 +65,7 @@ mod_tab_confirmation_server <-
       
       ns <- session$ns
       BDD<-reactive(r_global$donnee_utilisateur())
-      observeEvent(BDD,{
+      observeEvent(BDD,ignoreInit = F,{
         print(r_global$donnee_utilisateur())
         print(BDD)
         data<-BDD()

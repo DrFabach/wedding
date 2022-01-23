@@ -35,6 +35,7 @@ app_server <- function( input, output, session ) {
   data_guests <- read_csv(glue::glue(temp_dir, "/data_guests.csv"), 
                           locale = locale(decimal_mark = ","),
                             col_types = cols(repas = col_logical(),
+                                             tout = col_logical(),
                                            .default = col_character()))
   r_global$data_guests <- data_guests
 
@@ -63,6 +64,11 @@ app_server <- function( input, output, session ) {
     id_i<-ifelse(length(id_i)==0,0,id_i)
     
     data_guests%>%filter(id == id_i)})
+ r_global$partie<- reactive({
+   data_i<-r_global$donnee_utilisateur()
+   data_i<-data_i%>%slice(1)
+   ifelse(data_i$tout,"tout",ifelse(data_i$repas,"repas","apero"))
+ })
   # r_global$donnee_utilisateur<- tibble(prenom= c("Antoine","Michele"),
   #                                      sexe = c("H","F"),
   #                                      enfants=0,
