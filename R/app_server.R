@@ -27,10 +27,10 @@ app_server <- function( input, output, session ) {
   
   temp_dir <- tempdir()
   
-  googledrive::drive_download("site_mariage/data_expenses", path = glue::glue(temp_dir, "/data_expenses.csv"), overwrite = TRUE)
-  data_expenses <- read_csv(glue::glue(temp_dir, "/data_expenses.csv"), locale = locale(decimal_mark = ","))
-  r_global$data_expenses <- data_expenses
-  
+  # googledrive::drive_download("site_mariage/data_expenses", path = glue::glue(temp_dir, "/data_expenses.csv"), overwrite = TRUE)
+  # data_expenses <- read_csv(glue::glue(temp_dir, "/data_expenses.csv"), locale = locale(decimal_mark = ","))
+  # r_global$data_expenses <- data_expenses
+  # 
   googledrive::drive_download("site_mariage/donnee_ivite", path = glue::glue(temp_dir, "/data_guests.csv"), overwrite = TRUE)
   data_guests <- read_csv(glue::glue(temp_dir, "/data_guests.csv"), 
                           locale = locale(decimal_mark = ","),
@@ -80,8 +80,8 @@ app_server <- function( input, output, session ) {
   mod_tab_schedule_server("tab_schedule_ui_1", r_global = r_global)
   mod_tab_place_server("tab_place_ui_1", r_global = r_global)
   mod_tab_accommodation_server("tab_accommodation_ui_1", r_global = r_global)
-  mod_tab_covid_server("tab_covid_ui_1", r_global = r_global)
+  # mod_tab_covid_server("tab_covid_ui_1", r_global = r_global)
   mod_tab_witnesses_server("tab_witnesses_ui_1", r_global = r_global)
-  mod_hidden_tab_preparations_server("hidden_tab_preparations_ui_1", r_global = r_global)
+  # mod_hidden_tab_preparations_server("hidden_tab_preparations_ui_1", r_global = r_global)
   
 }

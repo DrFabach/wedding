@@ -35,11 +35,11 @@ get_map_wedding <- function(data_markers,
                             icon_markers,
                             zoom = 7) {
   
-  if (nrow(data_markers) > 1) {
-    centroid_map <- as.vector(centroid(data_markers %>% select(longitude, latitude) %>% as.data.frame()))
-  } else {
-    centroid_map = c(data_markers$longitude, data_markers$latitude)
-  }
+  # if (nrow(data_markers) > 1) {
+  #   centroid_map <- as.vector(centroid(data_markers %>% select(longitude, latitude) %>% as.data.frame()))
+  # } else {
+    centroid_map = c(data_markers$longitude[1], data_markers$latitude[1])
+  # }
   
   setview <- c("longitude" = centroid_map[1], 
                "latitude" = centroid_map[2], 

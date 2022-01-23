@@ -10,84 +10,8 @@
 mod_tab_place_ui <- function(id){
   
   ns <- NS(id)
+  uiOutput(ns("place"))
   
-  tagList(
-    
-    tags$br(style = "line-height: 80px"),
-    
-    fluidRow(
-      
-      column(
-        width = 6,
-        tags$div(img(src = "www/bellenoe.jpg"), style = "text-align: center"),
-        tags$br(style = "line-height: 20px"),
-        tags$p("Château du Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")
-        ),
-      
-      column(
-        width = 6,
-        align = "center",
-        leafletOutput(
-          outputId = ns("carte_belle_Lichtenberg"),
-          height = 341,
-          width = 512
-        )
-      )
-    ),
-    
-    # Parking
-    tags$br(style = "line-height: 80px"),
-    
-    tags$p("Un parking est disponible sur le domaine.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-    
-    tags$br(style = "line-height: 80px"),
-    
-    # Hébergements
-    fluidRow(
-      
-      column(
-        width = 6,
-        tags$br(style = "line-height: 45px"),
-        tags$p("Les h\u00e9bergements sur place", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-        tags$p("Le domaine a une capacit\u00e9 d\u2019h\u00e9bergements de 40/42 personnes.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Les h\u00e9bergements sont compos\u00e9s de 5 chambres d\'h\u00f4tes,", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("de petites chambres dans les d\u00e9pendances, et de 2 g\u00eetes.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Vous trouverez plus d\'informations dans l\'onglet H\u00e9bergements.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Le tarif sera de 25 euros/nuit/personne pour une h\u00e9bergement sur place.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("La priorit\u00e9 sera donn\u00e9e \u00e0 nos copains qui picolent beaucoup (ah ah) et aux familles.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Un espace camping avec toilettes s\u00e8ches est \u00e9galement disponible.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")
-      ),
-      
-      column(
-        width = 6,
-        tags$div(img(src = "www/bellenoe_dortoir.jpg"), 
-                 style = "text-align: center"),
-      )
-      
-    ),
-    
-    tags$br(style = "line-height: 80px"),
-    
-    # Salon des enfants
-    fluidRow(
-      
-      column(
-        width = 6,
-        tags$div(img(src = "www/bellenoe_enfants.jpg"), 
-                 style = "text-align: center"),
-      ),
-      
-      column(
-        width = 6,
-        tags$br(style = "line-height: 120px"),
-        tags$p("Le salon des enfants", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-        tags$p("Petite d\u00e9pendance de 45m\u00b2 proche des salles de r\u00e9ception et", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("\u00e9quip\u00e9e pour y recevoir les enfants sous la surveillance de baby-sitters.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Au premier \u00e9tage, un petit dortoir \u00e9quip\u00e9 de 8 lits (une personne).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")      )
-      
-    )
- 
-  )
 }
     
 #' tab_place Server Functions
@@ -103,14 +27,97 @@ mod_tab_place_server <- function(id, r_global){
       
       get_map_wedding(
         data_markers = tibble(
-          longitude = -728948, 
-          latitude = 48.55253,
-          name = "carte_belle_Lichtenberg"),
-        icon_markers = "heart"
+          longitude = c(7.487151646289885,7.481969), 
+          latitude = c(48.921194828283234,48.921543),
+          name = c('<a href="https://g.page/Chateaulichtenberg?share" target="_blank" rel="noopener noreferrer">Château Lichtenberg</a>',
+                   '<a href="https://goo.gl/maps/FW6S6ReUpMuZidq76" target="_blank" rel="noopener noreferrer">Parking</a>')),
+        icon_markers = c("heart","car-sport"),
+        zoom = 8
       )
                             
     })
  
+    output$place <- renderUI({ 
+    tagList(
+      
+      tags$br(style = "line-height: 80px"),
+      
+      fluidRow(
+        
+        column(
+          width = 6,
+          tags$div(img(src = "www/bellenoe.jpg"), style = "text-align: center; width = 50%"),
+          tags$br(style = "line-height: 20px"),
+          tags$p("Château du Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")
+        ),
+        
+        column(
+          width = 6,
+          align = "center",
+          leafletOutput(
+            outputId = ns("carte_belle_Lichtenberg"),
+            height = 341,
+            width = 512
+          )
+        )
+      ),
+      
+      # Parking
+      tags$br(style = "line-height: 80px"),
+      
+      tags$p("L'accès au château en voiture est impossible, il est nécessaire de se garer sur le parking dans le village (nous contacter en cas de mobilité réduite).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      tags$p("Pensez à prévoir des chaussures plates car le sol est en terre.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      tags$p("Nous serions ravis que vous portiez un accésoire qui rappelle un de vos films préférés !", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      
+      tags$br(style = "line-height: 80px")
+      
+      # Hébergements
+      # fluidRow(
+      #   
+      #   column(
+      #     width = 6,
+      #     tags$br(style = "line-height: 45px"),
+      #     tags$p("Les h\u00e9bergements sur place", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
+      #     tags$p("Le domaine a une capacit\u00e9 d\u2019h\u00e9bergements de 40/42 personnes.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("Les h\u00e9bergements sont compos\u00e9s de 5 chambres d\'h\u00f4tes,", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("de petites chambres dans les d\u00e9pendances, et de 2 g\u00eetes.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("Vous trouverez plus d\'informations dans l\'onglet H\u00e9bergements.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("Le tarif sera de 25 euros/nuit/personne pour une h\u00e9bergement sur place.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("La priorit\u00e9 sera donn\u00e9e \u00e0 nos copains qui picolent beaucoup (ah ah) et aux familles.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("Un espace camping avec toilettes s\u00e8ches est \u00e9galement disponible.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")
+      #   ),
+      #   
+      #   column(
+      #     width = 6,
+      #     tags$div(img(src = "www/bellenoe_dortoir.jpg"), 
+      #              style = "text-align: center"),
+      #   )
+      #   
+      # ),
+      # 
+      # tags$br(style = "line-height: 80px"),
+      # 
+      # # Salon des enfants
+      # fluidRow(
+      #   
+      #   column(
+      #     width = 6,
+      #     tags$div(img(src = "www/bellenoe_enfants.jpg"), 
+      #              style = "text-align: center"),
+      #   ),
+      #   
+      #   column(
+      #     width = 6,
+      #     tags$br(style = "line-height: 120px"),
+      #     tags$p("Le salon des enfants", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
+      #     tags$p("Petite d\u00e9pendance de 45m\u00b2 proche des salles de r\u00e9ception et", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("\u00e9quip\u00e9e pour y recevoir les enfants sous la surveillance de baby-sitters.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      #     tags$p("Au premier \u00e9tage, un petit dortoir \u00e9quip\u00e9 de 8 lits (une personne).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")      )
+      #   
+      # )
+      
+    )
+    })
   })
 }
     

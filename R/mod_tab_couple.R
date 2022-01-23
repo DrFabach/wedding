@@ -36,17 +36,19 @@ mod_tab_couple_ui <- function(id){
              
              # Décomptes
              
-             
-             tags$div(class = "landing-block decompte-content",
-                      tags$div(class = "decompte-text",
+             tags$div(class = "decompte_text",
+           
                textOutput(
                  outputId = ns("decompte_vie_commune")
-                 ),
-              
+               )
+                
+             ),
+             
+             tags$div(class = "decompte_text",
                textOutput(
                  outputId = ns("decompte_mariage")
-               )   )  )
-             
+               )
+             )
     )
   )
   
