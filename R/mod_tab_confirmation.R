@@ -299,12 +299,13 @@ mod_tab_confirmation_server <-
             r_local$special_diet=  c(input$special_diet,input$special_diet_2)%>%as.character()
             r_local$film =   c(input$film, input$film_2)%>%as.character()
             r_local$enfant =   input$enfant_1%>%as.character()
+            r_local$enfant=ifelse(length(r_local$enfant)==0,c("F","F"),r_local$enfant)
             r_local$ceremonie = input$ceremonie%>%as.character()
             r_local$date = Sys.time()%>%as.character()
             
       r_local$info<-r_local$info%>%add_row(
       prenom= r_local$name,
-      nom =  (data$nom[1]),
+      nom =  (data()$nom[1]),
       here_cocktail= r_local$here_cocktail,
       here_dinner = r_local$here_dinner ,
       here_brunch =r_local$here_brunch,
@@ -346,52 +347,7 @@ mod_tab_confirmation_server <-
     })
     
    observeEvent(input$name, ignoreInit = TRUE, {
-     # print(
-     #   input$name)
-      # req(input$name != "Choisir dans la liste la personne")
-      # req(r_global$data_guests)
-      #
-      #       r_local$type_guest <- r_global$data_guests %>%
-      #         filter(name == input$name) %>%
-      #         pull(type)
-      #
-      #       if (r_local$type_guest == "Ado") {
-      #
-      #         output$show_input_teens_menu <- renderUI({
-      #
-      #           selectInput(
-      #             inputId = ns("teens_menu"),
-      #             label = "Menu pour le d\u00eener - le menu adulte contient du foie gras et du canard",
-      #             choices = c("Menu adulte", "Menu enfant"),
-      #             selected = "Menu adulte"
-      #           )
-      #
-      #         })
-      #
-      #         shinyjs::hide(id = "kids_menu")
-      #
-      #       } else if (r_local$type_guest == "Enfant") {
-      #
-      #         output$show_input_kids_menu <- renderUI({
-      #
-      #           selectInput(
-      #             inputId = ns("kids_menu"),
-      #             label = "Choix pour les repas (cocktail, d\u00eener, retour)",
-      #             choices = c("Menu enfant", "Pas de repas \u00e0 pr\u00e9voir pour mon bibou"),
-      #             selected = "Menu enfant"
-      #           )
-      #
-      #         })
-      #
-      #         shinyjs::hide(id = "teens_menu")
-      #
-      #       } else {
-      #
-      #         shinyjs::hide(id = "kids_menu")
-      #         shinyjs::hide(id = "teens_menu")
-      #
-      #       }
-      #
+   
     })
     
    
