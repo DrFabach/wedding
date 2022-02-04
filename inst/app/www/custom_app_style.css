@@ -1,23 +1,4 @@
-@media votre requete ici {
-    /* Le code pour les mobiles ici */
-    img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {
-    max-width: 100%;
-}
 
-.landing-wrapper .foreground-content {
-  position: absolute;
-  top: 45%;
-
-}
-
-.landing-wrapper .foreground-content .foreground-text {
-  width: auto;
-
-  background-color: #f7f7f700;
-
-}
-
-}
 
 /* Import fonts */
 @font-face {
@@ -196,4 +177,26 @@ text-align: center;
 
 .shiny-notification {
     font-family: 'Bauer Bodoni Std 1';
+}
+
+
+@media only screen and (max-device-width: 640px) {
+    /* Le code pour les mobiles ici */
+    img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {
+    max-width: 100%;
+}
+
+.landing-wrapper .foreground-content {
+  position: absolute;
+  top: 45%;
+
+}
+
+.landing-wrapper .foreground-content .foreground-text {
+  width: auto;
+
+  background-color: #f7f7f700;
+
+}
+
 }
