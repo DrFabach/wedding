@@ -4,7 +4,7 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @importFrom readr read_csv cols col_character col_integer
-#' 
+#' @import dplyr
 #' @noRd
 app_server <- function( input, output, session ) {
   if(T){
@@ -22,8 +22,8 @@ app_server <- function( input, output, session ) {
   # Reactive values
   r_global <- reactiveValues()
   # Data on google drive
-  # googledrive::drive_auth(cache = ".secrets",
-  #                         email = Sys.getenv("GOOGLE_MAIL"))
+  googledrive::drive_auth(cache = ".secrets",
+                          email = Sys.getenv("GOOGLE_MAIL"))
   # 
   temp_dir <- tempdir()
   
