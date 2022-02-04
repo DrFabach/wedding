@@ -1,3 +1,24 @@
+@media votre requete ici {
+    /* Le code pour les mobiles ici */
+    img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {
+    max-width: 100%;
+}
+
+.landing-wrapper .foreground-content {
+  position: absolute;
+  top: 45%;
+
+}
+
+.landing-wrapper .foreground-content .foreground-text {
+  width: auto;
+
+  background-color: #f7f7f700;
+
+}
+
+}
+
 /* Import fonts */
 @font-face {
     font-family: 'MrsEavesItalic';
@@ -38,6 +59,9 @@
     font-display: swap;
 }
 
+body {
+    min-width: 320px;
+}
 /* Body */
 html,body{
     width: 100%;
