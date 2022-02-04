@@ -22,9 +22,9 @@ app_server <- function( input, output, session ) {
   # Reactive values
   r_global <- reactiveValues()
   # Data on google drive
-  googledrive::drive_auth(cache = ".secrets",
-                          email = Sys.getenv("GOOGLE_MAIL"))
-  
+  # googledrive::drive_auth(cache = ".secrets",
+  #                         email = Sys.getenv("GOOGLE_MAIL"))
+  # 
   temp_dir <- tempdir()
   
   # googledrive::drive_download("site_mariage/data_expenses", path = glue::glue(temp_dir, "/data_expenses.csv"), overwrite = TRUE)
