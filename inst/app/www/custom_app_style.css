@@ -103,7 +103,7 @@ font-size: 20px;
 letter-spacing: 5px;
 color: black;
 text-align: center;
-background-color: #bf791b;
+
 }
 .landing-wrapper .foreground-content .foreground-text{
 width: 50%;
@@ -187,8 +187,8 @@ text-align: center;
 }
 
 .landing-wrapper .foreground-content {
-  position: absolute;
-  top: 45%;
+  position: static;
+ 
 
 }
 
@@ -196,6 +196,20 @@ text-align: center;
   width: auto;
 
   background-color: #f7f7f700;
+
+}
+
+.landing-wrapper .foreground-content {
+  position: static;
+  top: auto%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.landing-wrapper .landing-block {
+  width: 100%;
+  height: auto;
 
 }
 
