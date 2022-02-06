@@ -17,22 +17,27 @@ app_ui <- function(request) {
                  title = "Accueil",
                  mod_tab_couple_ui("tab_couple_ui_1")
                ),
+               tabPanel(
+                 title = "Lieu du mariage",
+                 mod_tab_place_ui("tab_place_ui_1")
+               ),
+               tabPanel(
+                 title = "Programme de la journ\u00e9e",
+                 mod_tab_schedule_ui("tab_schedule_ui_1")
+               ),
+               
                
                tabPanel(
                  title = "Confirmer ma venue", 
                    mod_tab_confirmation_ui("tab_confirmation_ui_1"
                    )
                ),
-               
                tabPanel(
-                 title = "Programme de la journ\u00e9e",
-                 mod_tab_schedule_ui("tab_schedule_ui_1")
+                 title = "Informations importantes",
+                 mod_tab_covid_ui("tab_covid_ui_1")
                ),
                
-               tabPanel(
-                 title = "Lieu du mariage",
-                 mod_tab_place_ui("tab_place_ui_1")
-               ),
+               
                
                tabPanel(
                  title = "H\u00e9bergements",
@@ -40,19 +45,16 @@ app_ui <- function(request) {
                ),
                
                tabPanel(
-                 title = "T\u00e9moins",
+                 title = "Contact",
                  mod_tab_witnesses_ui("tab_witnesses_ui_1")
-               ),
+               )
+               # 
+              
                
                # tabPanel(
-               #   title = "Covid",
-               #   mod_tab_covid_ui("tab_covid_ui_1")
-               # ),
-               
-               tabPanel(
-                 title = "Espace des mari\u00e9s",
-                 mod_hidden_tab_preparations_ui("hidden_tab_preparations_ui_1")
-               )
+               #   title = "Espace des mari\u00e9s",
+               #   mod_hidden_tab_preparations_ui("hidden_tab_preparations_ui_1")
+               # )
                
                )
   )

@@ -26,15 +26,17 @@ mod_tab_confirmation_ui <- function(id) {
     uiOutput(ns("confirmation")),
     fluidRow(align="center",
              uiOutput(ns("enfant")),
-             htmltools::tagAppendAttributes(
-             shinyWidgets::materialSwitch(
-               inputId = ns("ceremonie"),
-               label = "Souhaitons participer activement à la cérémonie",
-               value = F,
-               status = "success",
-               right = TRUE
-             ) ,  style = "text-align: initial;"
-             )),
+             # htmltools::tagAppendAttributes(
+             # shinyWidgets::materialSwitch(
+             #   inputId = ns("ceremonie"),
+             #   label = "Souhaitons participer activement à la cérémonie",
+             #   value = F,
+             #   status = "success",
+             #   right = TRUE
+             # ) 
+             # ,  style = "text-align: initial;"
+             # )
+    ),
     fluidRow(align="center",
              
           
@@ -107,43 +109,23 @@ mod_tab_confirmation_server <-
           ),
           tags$br(style = "line-height: 20px"),
           tags$p(
-            "Pr\u00e9sence aux diff\u00e9rents moments du mariage",
+            "Confirmer ma venue : ",
             style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
           ),
           br(),
-          shinyWidgets::materialSwitch(
-            inputId = ns("here_cocktail_2"),
-            label = "Vin d'honneur",
-            value = F,
-            status = "success",
-            right = TRUE
-          ),
-       
-          shinyWidgets::materialSwitch(
-            inputId = ns("here_dinner_2"),
-            label = "Repas",
-            value = F,
-            status = "success",
-            right = TRUE
-          ),
-          shinyWidgets::materialSwitch(
-            inputId = ns("here_brunch_2"),
-            label = "Brunch du dimanche",
-            value = F,
-            status = "success",
-            right = TRUE
-          ),
-          tags$br(style = "line-height: 20px"),
-          textInput(
-            inputId = ns("special_diet_2"),
-            label = "R\u00e9gime alimentaire particulier ",
-            placeholder = "allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc."
-          ),
+        ui_choix_2,
           textInput(
             inputId = ns("film_2"),
             label = "Film préféré",
-            placeholder = "Indiquer le meilleur film de tous les temps"
+            placeholder = "Indiquer votre/vos films préférés"
           
+        ),
+        shinyWidgets::materialSwitch(
+          inputId = ns("ceremonie"),
+          label = "Je souhaite intervenir lors de la cérémonie !",
+          value = F,
+          status = "success",
+          right = TRUE
         )))
         })
   
@@ -197,7 +179,118 @@ mod_tab_confirmation_server <-
         shinyjs::hide(id = "quest_invite_supp")
                 } 
        
+        
+        
+        ui_choix<- renderUI({
+          if(repas){
+            return(
+          tags$div(
+        shinyWidgets::materialSwitch(
+          inputId = ns("here_cocktail"),
+          label = "Vin d'honneur",
+          value = F,
+          status = "success",
+          right = TRUE
+        ),
 
+        shinyWidgets::materialSwitch(
+          inputId = ns("here_dinner"),
+          label = "Repas",
+          value = F,
+          status = "success",
+          right = TRUE
+        ),
+        shinyWidgets::materialSwitch(
+          inputId = ns("here_brunch"),
+          label = "Brunch du dimanche",
+          value = F,
+          status = "success",
+          right = TRUE
+        ),
+          tags$br(style = "line-height: 20px"),
+          textInput(
+            inputId = ns("special_diet"),
+            label = "R\u00e9gime alimentaire particulier",
+            placeholder = "allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc."
+          ))
+            )
+          }else{
+            return(
+              tags$div(
+                shinyWidgets::materialSwitch(
+                  inputId = ns("here_cocktail"),
+                  label = "Vin d'honneur",
+                  value = F,
+                  status = "success",
+                  right = TRUE
+                )
+                
+              
+            ))    
+            
+            }
+          
+          
+          })
+        
+        
+        ui_choix_2<- renderUI({
+          if(repas){
+            return(
+              tags$div(
+                
+                shinyWidgets::materialSwitch(
+                  inputId = ns("here_cocktail_2"),
+                  label = "Vin d'honneur",
+                  value = F,
+                  status = "success",
+                  right = TRUE
+                ),
+                
+                shinyWidgets::materialSwitch(
+                  inputId = ns("here_dinner_2"),
+                  label = "Repas",
+                  value = F,
+                  status = "success",
+                  right = TRUE
+                ),
+                shinyWidgets::materialSwitch(
+                  inputId = ns("here_brunch_2"),
+                  label = "Brunch du dimanche",
+                  value = F,
+                  status = "success",
+                  right = TRUE
+                ),
+                tags$br(style = "line-height: 20px"),
+                textInput(
+                  inputId = ns("special_diet_2"),
+                  label = "R\u00e9gime alimentaire particulier ",
+                  placeholder = "allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc."
+                ))
+            )
+          }else{
+            return(
+              tags$div(
+                shinyWidgets::materialSwitch(
+                  inputId = ns("here_cocktail_2"),
+                  label = "Vin d'honneur",
+                  value = F,
+                  status = "success",
+                  right = TRUE
+                )
+                )
+                
+                
+              )   
+            
+          }
+          
+          
+        })
+        
+        
+       
+        
         
         output$confirmation <- renderUI({
           
@@ -221,42 +314,23 @@ mod_tab_confirmation_server <-
               ),
               tags$br(style = "line-height: 20px"),
               tags$p(
-                "Pr\u00e9sence aux diff\u00e9rents moments du mariage",
+                "Confirmer ma venue : ",
                 style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
               ),
               br(),
-              shinyWidgets::materialSwitch(
-                inputId = ns("here_cocktail"),
-                label = "Vin d'honneur",
-                value = F,
-                status = "success",
-                right = TRUE
-              ),
-           
-              shinyWidgets::materialSwitch(
-                inputId = ns("here_dinner"),
-                label = "Repas",
-                value = F,
-                status = "success",
-                right = TRUE
-              ),
-              shinyWidgets::materialSwitch(
-                inputId = ns("here_brunch"),
-                label = "Brunch du dimanche",
-                value = F,
-                status = "success",
-                right = TRUE
-              ),
-            tags$br(style = "line-height: 20px"),
-            textInput(
-              inputId = ns("special_diet"),
-              label = "R\u00e9gime alimentaire particulier",
-              placeholder = "allergies/intol\u00e9rances alimentaires, r\u00e9gime femme enceinte, etc."
-            ),
+              ui_choix,
+            
             textInput(
               inputId = ns("film"),
               label = "Film préféré",
-              placeholder = "Indiquer le meilleur film de tous les temps"
+              placeholder = "Indiquer votre/vos films préférés"
+            ),
+            shinyWidgets::materialSwitch(
+              inputId = ns("ceremonie2"),
+              label = "Je souhaite intervenir lors de la cérémonie !",
+              value = F,
+              status = "success",
+              right = TRUE
             )
             )),
           
@@ -294,13 +368,14 @@ mod_tab_confirmation_server <-
     observeEvent(input$save_info_guest, {
       r_local$name <- c(input$name,input$name_2)%>%as.character()
       r_local$here_cocktail= c(input$here_cocktail,input$here_cocktail_2)%>%as.character() 
-            r_local$here_dinner = c(input$here_dinner,input$here_dinner_2)%>%as.character()
-            r_local$here_brunch =c(input$here_brunch,input$here_brunch_2)%>%as.character()
-            r_local$special_diet=  c(input$special_diet,input$special_diet_2)%>%as.character()
+            r_local$here_dinner = ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_dinner,input$here_dinner_2)%>%as.character())
+            r_local$here_brunch =ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_brunch,input$here_brunch_2)%>%as.character())
+            r_local$special_diet= ifelse(length(input$here_dinner)==0,c("",""), c(input$special_diet,input$special_diet_2)%>%as.character())
             r_local$film =   c(input$film, input$film_2)%>%as.character()
             r_local$enfant =   input$enfant_1%>%as.character()
             r_local$enfant=ifelse(length(r_local$enfant)==0,c("F","F"),r_local$enfant)
-            r_local$ceremonie = input$ceremonie%>%as.character()
+            r_local$ceremonie =  c(input$ceremonie, input$ceremonie_2)%>%as.character()
+            
             r_local$date = Sys.time()%>%as.character()
             
       r_local$info<-r_local$info%>%add_row(

@@ -66,8 +66,6 @@ mod_tab_place_server <- function(id, r_global){
       tags$br(style = "line-height: 80px"),
       
       tags$p("L'accès au château en voiture est impossible, il est nécessaire de se garer sur le parking dans le village (nous contacter en cas de mobilité réduite).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-      tags$p("Pensez à prévoir des chaussures plates car le sol est en terre.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-      tags$p("Nous serions ravis que vous portiez un accésoire qui rappelle un de vos films préférés !", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
       
       tags$br(style = "line-height: 80px")
       

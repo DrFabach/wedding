@@ -80,7 +80,7 @@ app_server <- function( input, output, session ) {
   mod_tab_schedule_server("tab_schedule_ui_1", r_global = r_global)
   mod_tab_place_server("tab_place_ui_1", r_global = r_global)
   mod_tab_accommodation_server("tab_accommodation_ui_1", r_global = r_global)
-  # mod_tab_covid_server("tab_covid_ui_1", r_global = r_global)
+  mod_tab_covid_server("tab_covid_ui_1", r_global = r_global)
   mod_tab_witnesses_server("tab_witnesses_ui_1", r_global = r_global)
   # mod_hidden_tab_preparations_server("hidden_tab_preparations_ui_1", r_global = r_global)
   
