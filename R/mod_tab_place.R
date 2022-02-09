@@ -65,7 +65,7 @@ mod_tab_place_server <- function(id, r_global){
       # Parking
       tags$br(style = "line-height: 80px"),
       
-      tags$p("L'accès au château en voiture est impossible, il est nécessaire de se garer sur le parking dans le village (nous contacter en cas de mobilité réduite).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      tags$p("L'accès au château se fait à pied, le parking se situe au milieu du village à côté de l'église. (nous contacter en cas de mobilité réduite).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
       
       tags$br(style = "line-height: 80px")
       
