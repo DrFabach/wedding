@@ -25,6 +25,7 @@ mod_tab_covid_ui <- function(id){
              # Texte
              # tags$div(class = "landing-block foreground-content",
                       tags$div(class = "foreground-text",
+                               br(),
                                tags$p("Mesdames", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
                                tags$p("Le sol du château est meuble, nous vous conseillons de prévoir des chaussures adaptées",
