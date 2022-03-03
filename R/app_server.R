@@ -85,9 +85,7 @@ app_server <- function( input, output, session ) {
   
   observeEvent(r_global$donnee_utilisateur,ignoreInit = F,({
     print(r_global$donnee_utilisateur()$repas[1])
-  if(r_global$donnee_utilisateur()$repas[1] ){
     mod_tab_place_server("tab_place_ui_1", r_global = r_global)
-  }
   # mod_hidden_tab_preparations_server("hidden_tab_preparations_ui_1", r_global = r_global)
  } ))
 }

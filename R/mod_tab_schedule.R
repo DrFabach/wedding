@@ -10,8 +10,14 @@
 mod_tab_schedule_ui <- function(id){
   
   ns <- NS(id)
-  uiOutput(ns("programme"))
-  
+  fluidRow(
+    
+    column(
+      
+      width = 3, tags$div(img(src = "www/camera.png"), style = "text-align: center; width = 50%"),
+    ),
+    column(6,
+  uiOutput(ns("programme"))))
 }
     
 #' tab_schedule Server Functions
