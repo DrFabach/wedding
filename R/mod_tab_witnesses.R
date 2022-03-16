@@ -52,8 +52,16 @@ mod_tab_witnesses_ui <- function(id){
         tags$br(style = "line-height: 20px"),
         
       )
-    )
-  )
+    ),
+    fluidRow(    align = "center",
+                 
+                 tags$p("Contacter le maître de cérémonie :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+                 
+                 tags$br(style = "line-height: 20px"),
+                 tags$p("ceremonie@fabacher.fr")
+                 
+              
+  ))
 }
     
 #' tab_witnesses Server Functions

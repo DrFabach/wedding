@@ -14,10 +14,10 @@ mod_tab_schedule_ui <- function(id){
     
     column(
       
-      width = 3, tags$div(img(src = "www/camera.png"), style = "text-align: center; width = 50%"),
-    ),
-    column(6,
-  uiOutput(ns("programme"))))
+      width = 6,   uiOutput(ns("programme"))),
+    column(3,tags$div(img(src = "www/camera.png"), style = "text-align: center; width = 50%"),
+    ))
+
 }
     
 #' tab_schedule Server Functions

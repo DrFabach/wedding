@@ -27,28 +27,28 @@ mod_tab_couple_ui <- function(id){
              # Texte
              tags$div(class = "landing-block foreground-content",
                       tags$div(class = "foreground-text",
-                               tags$h1("Barbara et Thibaut", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:10px"),
+                               tags$h1("Barbara et Thibaut", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:7px"),
                                tags$p("se disent oui", style = "font-family: 'Old script'; font-size:50px; letter-spacing:5px"),
-                               tags$br(),
-                               tags$p("11 Juin 2022", style = "font-family: 'Bauer Bodoni Std 1'; letter-spacing:10px")
+                              
+                               tags$p("11 Juin 2022", style = "font-family: 'Bauer Bodoni Std 1';font-size:25px; letter-spacing:6px")
                       )
-             ),
+             )
              
              # Décomptes
              
-             tags$div(class = "decompte_text",
-           
-               textOutput(
-                 outputId = ns("decompte_vie_commune")
-               )
-                
-             ),
+             # tags$div(class = "decompte_text",
+             # 
+             #   textOutput(
+             #     outputId = ns("decompte_vie_commune")
+             #   )
+             #    
+             # ),
              
-             tags$div(class = "decompte_text",
-               textOutput(
-                 outputId = ns("decompte_mariage")
-               )
-             )
+             # tags$div(class = "decompte_text",
+               # textOutput(
+                 # outputId = ns("decompte_mariage")
+               # )
+             # )
     )
   )
   

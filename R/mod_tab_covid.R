@@ -34,7 +34,7 @@ mod_tab_covid_ui <- function(id){
                                
                                tags$p("Cérémonie laique", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Nous organisons une cérémonie laïque pour laquelle nous serions ravies que vous participiez si vous le souhaitez.",
+                               tags$p("Nous organisons une cérémonie laïque pour laquelle nous serions ravis que vous participiez si vous le souhaitez.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                                tags$p("Cela peut être des lectures de textes, des discours, des chansons ou toute autres envies qui vous passeraient par la tête",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
@@ -51,10 +51,10 @@ mod_tab_covid_ui <- function(id){
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
                                tags$p("Pour notre mariage...pas de liste, mais...un voyage ! ",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                               tags$p("Une urne sera disponible le jour du mariage.",
+                               tags$p("Un tronc sera disponible le jour du mariage.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                                
-                               tags$p("Baby-sitting", 
+                               tags$p("Garde d'enfant", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
                                tags$p("Un baby-sitting sera organisé pour la durée de l'évenement",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")

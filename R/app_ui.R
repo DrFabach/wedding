@@ -25,17 +25,17 @@ app_ui <- function(request) {
                  title = "Programme de la journ\u00e9e",
                  mod_tab_schedule_ui("tab_schedule_ui_1")
                ),
-               
+               tabPanel(
+                 title = "Informations importantes",
+                 mod_tab_covid_ui("tab_covid_ui_1")
+               ),  
                
                tabPanel(
                  title = "Confirmer ma venue", 
                    mod_tab_confirmation_ui("tab_confirmation_ui_1"
                    )
                ),
-               tabPanel(
-                 title = "Informations importantes",
-                 mod_tab_covid_ui("tab_covid_ui_1")
-               ),
+             
                
                
                

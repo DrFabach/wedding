@@ -28,9 +28,10 @@ mod_tab_accommodation_ui <- function(id){
         tags$br(style = "line-height: 20px"),
         tags$p("\u00c0 0 km, 0 minutes", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
-   
+        tags$p(
         tags$a("Site internet", href = "https://www.au-soleil-muhlheim.fr/", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
-        
+         style = " text-align: center"),
+      
         tags$br(style = "line-height: 20px")
         ),
       
@@ -54,7 +55,10 @@ mod_tab_accommodation_ui <- function(id){
         tags$br(style = "line-height: 20px"),
         tags$p("\u00c0 3 km, 5 minutes", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
+        tags$p(
         tags$a("Site internet", href = "https://www.lacouronnebyk.fr/hotel", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
+        style = " text-align: center"),
+      
         tags$br(style = "line-height: 20px")
         
       )

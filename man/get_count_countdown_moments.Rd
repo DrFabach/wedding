@@ -9,7 +9,7 @@ get_count_countdown_moments(
   end_moment,
   text,
   time_zone = Sys.timezone(),
-  language = "en"
+  language = "fr"
 )
 }
 \arguments{
