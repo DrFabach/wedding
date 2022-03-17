@@ -78,25 +78,30 @@ html,body{
 
 .landing-wrapper .landing-block{
     width: 100%;
+         position: absolute;
     height: 75vh;
 /*    opacity: 0.9;*/
 }
 
+
 .landing-wrapper .background-content img{
     display: block;
     width: 100%;
+    position: absolute;
 }
 
 .landing-wrapper .foreground-content{
-    position: absolute;
-    top: 10%;
+ 
+    
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
+.landing-block.foreground-content {
+    z-index: 1;
+}
 .landing-wrapper .decompte_text{
  font-family: 'Bauer Bodoni Std 1';
 font-size: 20px;

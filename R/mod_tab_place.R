@@ -44,22 +44,20 @@ mod_tab_place_server <- function(id, r_global){
       
       fluidRow(
         
-        column(
-          width = 6,
+        align = "center",
           tags$div(img(src = "www/bellenoe.jpg"), style = "text-align: center; width = 50%"),
           tags$br(style = "line-height: 20px"),
-          tags$p("Château du Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")
-        ),
-        
-        column(
-          width = 6,
+          tags$p("Château du Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")),
+      tags$br(style = "line-height: 80px"),
+     fluidRow(
+     
           align = "center",
           leafletOutput(
             outputId = ns("carte_belle_Lichtenberg"),
             height = 341,
             width = 512
           )
-        )
+        
       ),
       
       # Parking
