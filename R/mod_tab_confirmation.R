@@ -15,9 +15,9 @@ mod_tab_confirmation_ui <- function(id) {
   tagList(
     useShinyjs(),
     fluidRow(align = "center",
-             img(
-               src = glue::glue("www/", "confirmation-2.jpg")
-             )),
+             tags$div(  img(
+               src = glue::glue("www/", "confirmation-2.jpg"), width="100%"
+             ), style = "text-align: center; width = 75%")),
     fluidRow(
       align = "center",
       tags$br(style = "line-height: 65px"),

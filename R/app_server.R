@@ -39,13 +39,43 @@ app_server <- function( input, output, session ) {
                                            .default = col_character()))
   r_global$data_guests <- data_guests
 
+  my_custom_check_creds <- function(dbname, db_user) {
+    
+    # finally one function of user and password
+    # print("essai login1")
+    function(user, password) {
+      print(str(password))
+      user<- user%>%tolower%>%
+       gsub(" ","",.)%>%
+       gsub("-","",.)%>%
+      gsub("[éèêe]","e",.)%>%
+       gsub("à","a",.)%>%
+        gsub("ô","o",.)%>%
+        gsub("ù","u",.)%>%
+        gsub("ç","c",.)
+      password<- password%>%tolower%>%
+        gsub(" ","",.)%>%
+        gsub("-","",.)%>%
+        gsub("[éèêe]","e",.)%>%
+        gsub("à","a",.)%>%
+        gsub("ô","o",.)%>%
+        gsub("ù","u",.)%>%
+        gsub("ç","c",.)
+      
+    res<-data_guests%>%filter(prenom==user,
+                           nom==password)
+   
+
+      if (nrow(res) > 0) {
+        list(result = TRUE, user_info = list(user = user, id = res$id))
+      } else {
+        list(result = FALSE)
+      }
+  }
+  }
   
   res_auth <- shinymanager::secure_server(
-    check_credentials = shinymanager::check_credentials(data_guests%>%select(user=prenom,
-                                                                             password = nom,
-                                                                             
-                                                                             id)%>%
-                                                          mutate(admin = F)%>%filter(!is.na(user))),
+    check_credentials = my_custom_check_creds(dbname="user", db_user="password"),
     keep_token = T
   )
   

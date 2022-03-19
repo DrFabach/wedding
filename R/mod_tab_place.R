@@ -45,7 +45,7 @@ mod_tab_place_server <- function(id, r_global){
       fluidRow(
         
         align = "center",
-          tags$div(img(src = "www/bellenoe.jpg"), style = "text-align: center; width = 50%"),
+          tags$div(img(src = "www/bellenoe.jpg", width="100%"), style = "text-align: center; width = 50%"),
           tags$br(style = "line-height: 20px"),
           tags$p("Château du Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")),
       tags$br(style = "line-height: 80px"),
