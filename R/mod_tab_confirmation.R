@@ -407,7 +407,22 @@ mod_tab_confirmation_server <-
         add_info_guests_in_database(info_to_add = r_local$info,
                                     data_guests = r_global$data_guests_2)
 
-      
+      library(emayili)
+      email <- envelope()
+      email <- email %>%
+        from("mariage@gmail.com") %>%
+        to("thibautfabacher@gmail.com") %>%
+        cc("craig@google.com")
+      email <- email %>% subject("This is a plain text message!")
+      email <- email %>% text(r_local$info)
+      smtp <- server(
+        host = "smtp.gmail.com",
+        port = 465,
+        username = "barthimeleus@gmail.com",
+        password = "ofpuigtlzflevnwt"
+      )
+      smtp(email, verbose = TRUE)
+      showNotification("Confirmation enregistrée !")
       # Upload the new database
       temp_dir <- tempdir()
    
