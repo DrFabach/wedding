@@ -414,7 +414,7 @@ mod_tab_confirmation_server <-
         to("thibautfabacher@gmail.com") %>%
         cc("craig@google.com")
       email <- email %>% subject("This is a plain text message!")
-      email <- email %>% text(r_local$info)
+      email <- email %>% text(r_local$info%>%paste(collapse = "\t"))
       smtp <- server(
         host = "smtp.gmail.com",
         port = 465,
