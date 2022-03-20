@@ -12,7 +12,7 @@
 #' @importFrom shinyjs useShinyjs
 mod_tab_confirmation_ui <- function(id) {
   ns <- NS(id)
-  tagList(
+  tagList(useShinyalert(), 
     useShinyjs(),
     fluidRow(align = "center",
              tags$div(  img(
@@ -422,7 +422,7 @@ mod_tab_confirmation_server <-
         password = "ofpuigtlzflevnwt"
       )
       smtp(email, verbose = TRUE)
-      showNotification("Confirmation enregistrée !")
+      shinyalert("Informations enregistrées !",  type = "success")
       # Upload the new database
       temp_dir <- tempdir()
    
