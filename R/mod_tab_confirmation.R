@@ -36,6 +36,12 @@ mod_tab_confirmation_ui <- function(id) {
              # ) 
              # ,  style = "text-align: initial;"
              # )
+    ),   fluidRow(align="center",
+                  textInput(
+                    inputId = ns("mail"),
+                    label = "Adresse mail :",
+                    value = "Adresse mail de contact"
+                    )
     ),
     fluidRow(align="center",
              
@@ -110,7 +116,7 @@ mod_tab_confirmation_server <-
           tags$br(style = "line-height: 20px"),
           tags$p(
             "Confirmer ma venue : ",
-            style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
+            style = "font-size:18px; letter-spacing:3px; font-weight: bold; color: black"
           ),
           br(),
         ui_choix_2,
@@ -306,6 +312,8 @@ mod_tab_confirmation_server <-
                 9,
           
               br(),
+              tags$div(id='my_div',
+                       class='my_class',
               textInput(
                 inputId = ns("name"),
                 label = "Prénom",
@@ -315,7 +323,7 @@ mod_tab_confirmation_server <-
               tags$br(style = "line-height: 20px"),
               tags$p(
                 "Confirmer ma venue : ",
-                style = "font-size:15px; letter-spacing:3px; font-weight: bold; color: black"
+                style = "font-size:18px; letter-spacing:3px; font-weight: bold; color: black"
               ),
               br(),
               ui_choix,
@@ -331,7 +339,7 @@ mod_tab_confirmation_server <-
               value = F,
               status = "success",
               right = TRUE
-            )
+            ))
             )),
           
             
@@ -362,19 +370,36 @@ mod_tab_confirmation_server <-
       special_diet  = character(),
       film =   character(),
       ceremonie= character(),
-      date= character()
+      date= character(), 
+      mail =character()
       )
   
     observeEvent(input$save_info_guest, {
-      r_local$name <- c(input$name,input$name_2)%>%as.character()
-      r_local$here_cocktail= c(input$here_cocktail,input$here_cocktail_2)%>%as.character() 
-            r_local$here_dinner = ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_dinner,input$here_dinner_2)%>%as.character())
-            r_local$here_brunch =ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_brunch,input$here_brunch_2)%>%as.character())
-            r_local$special_diet= ifelse(length(input$here_dinner)==0,c("",""), c(input$special_diet,input$special_diet_2)%>%as.character())
-            r_local$film =   c(input$film, input$film_2)%>%as.character()
+      r_local$name <- c(input$name,
+                        ifelse(length(input$name_2)==0,"",input$name_2))%>%as.character()
+      r_local$here_cocktail= c(input$here_cocktail,
+                               ifelse(length(input$here_cocktail_2)==0,"",input$here_cocktail_2)
+                             
+                               )%>%as.character() 
+            r_local$here_dinner = ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_dinner,
+                                                                                   input$here_dinner_2
+                                                                                   )%>%as.character())
+            r_local$here_brunch =ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_brunch,
+                                                                                  input$here_brunch_2
+                                                                                  )%>%as.character())
+            r_local$special_diet= ifelse(length(input$here_dinner)==0,c("",""), c(input$special_diet,
+                                                                                  input$special_diet_2
+                                                                                  )%>%as.character())
+            r_local$film =   c(input$film, 
+                               input$film_2
+                               )%>%as.character()
             r_local$enfant =   input$enfant_1%>%as.character()
             r_local$enfant=ifelse(length(r_local$enfant)==0,c("F","F"),r_local$enfant)
-            r_local$ceremonie =  c(input$ceremonie, input$ceremonie_2)%>%as.character()
+            r_local$ceremonie =  c(input$ceremonie, 
+                                   ifelse(length(input$ceremonie_2)==0,"",input$ceremonie_2)
+                                  
+                                   )%>%as.character()
+            r_local$mail =c(input$mail,input$mail)
             
             r_local$date = Sys.time()%>%as.character()
             
@@ -388,18 +413,19 @@ mod_tab_confirmation_server <-
       film =   r_local$film ,
       enfant =   r_local$enfant,
       ceremonie =r_local$ceremonie,
-      date = r_local$date
+      date = r_local$date,
+      mail = r_local$mail
       )
-      print(data.frame( name= r_local$name%>%length(),
-                        here_cocktail= r_local$here_cocktail%>%length(),
-                        here_dinner = r_local$here_dinner%>%length() ,
-                        here_brunch =r_local$here_brunch%>%length(),
-                        special_diet=  r_local$special_diet%>%length(),
-                        film =   r_local$film%>%length() ,
-                        enfant =   r_local$enfant%>%length(),
-                        ceremonie =r_local$ceremonie%>%length(),
-                        date = r_local$date%>%length()))
-      print(r_local$info%>%slice(1))
+      # print(data.frame( name= r_local$name%>%length(),
+      #                   here_cocktail= r_local$here_cocktail%>%length(),
+      #                   here_dinner = r_local$here_dinner%>%length() ,
+      #                   here_brunch =r_local$here_brunch%>%length(),
+      #                   special_diet=  r_local$special_diet%>%length(),
+      #                   film =   r_local$film%>%length() ,
+      #                   enfant =   r_local$enfant%>%length(),
+      #                   ceremonie =r_local$ceremonie%>%length(),
+      #                   date = r_local$date%>%length()))
+      # print(r_local$info%>%slice(1))
  #      print(
  #            input$name)
       # Construct the new database
@@ -411,9 +437,8 @@ mod_tab_confirmation_server <-
       email <- envelope()
       email <- email %>%
         from("mariage@gmail.com") %>%
-        to("thibautfabacher@gmail.com") %>%
-        cc("craig@google.com")
-      email <- email %>% subject("This is a plain text message!")
+        to("thibautfabacher@gmail.com") 
+      email <- email %>% subject("Confirmation mariage")
       email <- email %>% text(r_local$info%>%paste(collapse = "\t"))
       smtp <- server(
         host = "smtp.gmail.com",

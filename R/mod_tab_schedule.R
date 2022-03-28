@@ -33,7 +33,7 @@ mod_tab_schedule_server <- function(id, r_global){
       print(partie)
       output$programme <- renderUI({ 
         
-        debut<-tagList(tags$p("Benediction", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+        debut<-tagList(tags$p("Bénédiction", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
                        tags$p("11 heures", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                        tags$p("Paulus chapelle", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                        tags$br(style = "line-height: 80px"),
@@ -45,19 +45,19 @@ mod_tab_schedule_server <- function(id, r_global){
         milieu<-
           tagList(tags$p("C\u00e9r\u00e9monie la\u00efque", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
         tags$p("15 heures", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Château du Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("Château de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 80px"),
         tags$p("Vin d\'honneur", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
         tags$p("17 heures", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-        tags$p("Château du Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
+        tags$p("Château de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
         fin <- tagList(tags$br(style = "line-height: 80px"),
                        tags$p("D\u00eener", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
                        tags$p("19 heures 30", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                       tags$p("Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+                       tags$p("Salle communale de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                        tags$br(style = "line-height: 80px"),
                        tags$p("Brunch", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
-                       tags$p("11 heures 30 le lendemain", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                       tags$p("1 rue d'Alsace Meisenthal", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
+                       tags$p("10 heures 30 le lendemain", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+                       tags$p("Salle communale de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
         if(partie =="tout"){
           return(tagList(
             

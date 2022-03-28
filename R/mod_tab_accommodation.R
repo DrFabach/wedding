@@ -26,7 +26,7 @@ mod_tab_accommodation_ui <- function(id){
         width = 4, 
         tags$p("Hôtel Muhlheim Au Soleil", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 25px; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
-        tags$p("\u00c0 0 km, 0 minutes", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("\u00c0 0 km, 0 minute", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
         tags$p(
         tags$a("Site internet", href = "https://www.au-soleil-muhlheim.fr/", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
@@ -40,11 +40,11 @@ mod_tab_accommodation_ui <- function(id){
         align = "center",
         tags$p("Gîte De Groupe", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 25px; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
-        tags$p("\u00c0 0 km, 0 minutes", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("\u00c0 0 km, 0 minute", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
         tags$a("Site internet", href = "https://tourisme.hanau-lapetitepierre.alsace/fiche/hebergements-collectifs/gite-de-groupe-2/", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
         tags$br(style = "line-height: 20px"),
-        tags$p("Nous contacter pour reserver cet hébergement.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("Nous contacter pour réserver cet hébergement.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         
         tags$br(style = "line-height: 20px")
        ),

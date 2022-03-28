@@ -185,6 +185,13 @@ text-align: center;
 }
 
 
+.form-control {
+
+
+
+font-size: 16px;
+  
+}
 @media only screen and (max-device-width: 640px) {
     /* Le code pour les mobiles ici */
     img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {

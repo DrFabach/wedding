@@ -2,6 +2,7 @@
   # To deploy, run: rsconnect::deployApp()
   # Or use the blue button on top of this file
 library(tidyverse)
+library(shinyalert)
   Sys.setenv(GOOGLE_MAIL = "thibautfabacher@gmail.com")
   pkgload::load_all(export_all = FALSE, helpers = FALSE, attach_testthat = FALSE)
   options( "golem.app.prod" = TRUE)
