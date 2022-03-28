@@ -24,12 +24,10 @@ mod_tab_accommodation_ui <- function(id){
       
       column(
         width = 4, 
-        tags$p("Hôtel Muhlheim Au Soleil", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 25px; letter-spacing:3px; text-align: center"),
-        tags$br(style = "line-height: 20px"),
-        tags$p("\u00c0 0 km, 0 minute", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("Airbnb", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 25px; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 20px"),
         tags$p(
-        tags$a("Site internet", href = "https://www.au-soleil-muhlheim.fr/", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
+        tags$a("Lien internet", href = "https://www.airbnb.fr/s/Lichtenberg--France/homes?adults=1&place_id=ChIJGWDCYIqclkcRZEUjJULZoqU&refinement_paths%5B%5D=%2Fhomes&checkin=2022-06-11&checkout=2022-06-12", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
          style = " text-align: center"),
       
         tags$br(style = "line-height: 20px")
