@@ -42,7 +42,7 @@ mod_tab_accommodation_ui <- function(id){
         tags$br(style = "line-height: 20px"),
         tags$a("Site internet", href = "https://tourisme.hanau-lapetitepierre.alsace/fiche/hebergements-collectifs/gite-de-groupe-2/", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
         tags$br(style = "line-height: 20px"),
-        tags$p("Nous contacter pour réserver cet hébergement.", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("Nous contacter pour réserver cet hébergement (30€/personne).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         
         tags$br(style = "line-height: 20px")
        ),
@@ -76,7 +76,7 @@ mod_tab_accommodation_server <- function(id, r_global){
  
     data_hebergements <- tibble(
       name = c(
-        "<b>Hôtel Muhlheim Au Soleil</b><br/>0 km 0 minutes", 
+        "<b>Airbnb</b><br/>0 km 0 minutes", 
         "<b>Gîte De Groupe</b><br/>0 km 0 minutes", 
         "<b>Hôtel la couronne</b><br/>3 km 5 minutes"), 
       longitude = c(-1.7129955029636943, -1.73221750178322,  -1.7487624196891016),
@@ -89,7 +89,7 @@ mod_tab_accommodation_server <- function(id, r_global){
         longitude = c(7.4802988, 7.4769124,  7.4634425),
         latitude = c(48.92090044, 48.9221844, 48.9250781),
         name = c(
-          "<b>Hôtel Muhlheim Au Soleil</b><br/>0 km 0 minutes", 
+          "<b>Airbnb</b><br/>0 km 0 minutes", 
           "<b>Gîte De Groupe</b><br/>0 km 0 minutes", 
           "<b>Hôtel la couronne</b><br/>3 km 5 minutes")
       )
