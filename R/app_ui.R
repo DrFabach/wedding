@@ -14,24 +14,24 @@ app_ui <- function(request) {
     navbarPage(title = NULL,
                
                tabPanel(
-                 title = "Accueil",
+                 title = "Startseite",
                  mod_tab_couple_ui("tab_couple_ui_1")
                ),
                tabPanel(
-                 title = "Lieu du mariage",
+                 title = "Ort der Hochzeit",
                  mod_tab_place_ui("tab_place_ui_1")
                ),
                tabPanel(
-                 title = "Programme de la journ\u00e9e",
+                 title = "Programm des Tages",
                  mod_tab_schedule_ui("tab_schedule_ui_1")
                ),
                tabPanel(
-                 title = "Informations importantes",
+                 title = "Wichtige Informationen",
                  mod_tab_covid_ui("tab_covid_ui_1")
                ),  
                
                tabPanel(
-                 title = "Confirmer ma venue", 
+                 title = "Mein Kommen bestätigen", 
                    mod_tab_confirmation_ui("tab_confirmation_ui_1"
                    )
                ),
@@ -40,12 +40,12 @@ app_ui <- function(request) {
                
                
                tabPanel(
-                 title = "H\u00e9bergements",
+                 title = "Unterkünfte",
                  mod_tab_accommodation_ui("tab_accommodation_ui_1")
                ),
                
                tabPanel(
-                 title = "Contact",
+                 title = "Kontakt",
                  mod_tab_witnesses_ui("tab_witnesses_ui_1")
                )
                # 
@@ -77,11 +77,11 @@ golem_add_external_resources <- function(){
   
   set_labels(
     language = "en",
-    "Please authenticate" = "Site du Mariage de Barbara & Thibaut",
-    "Username:" = "Prénom",
-    "Password:" = "Nom de famille",
+    "Please authenticate" = "Hochzeitsseite von Barbara & Thibaut",
+    "Username:" = "Vorname",
+    "Password:" = "Nachname",
     "Login" = "Connexion",
-    "Username or password are incorrect" = "L\'identifiant ou le mot de passe est incorrect"
+    "Username or password are incorrect" = "Benutzername oder Passwort ist falsch"
   )
  
   tags$head(

@@ -26,37 +26,37 @@ mod_tab_covid_ui <- function(id){
              # tags$div(class = "landing-block foreground-content",
                       tags$div(class = "foreground-text",
                                br(),
-                               tags$p("Mesdames", 
+                               tags$p("Damen", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Le sol du château est meuble, nous vous conseillons de prévoir des chaussures adaptées !",
+                               tags$p("Der Boden des Schlosses ist locker. Wir empfehlen Ihnen, geeignetes Schuhwerk mitzubringen!",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                                
                                
-                               tags$p("Cérémonie laïque", 
+                               tags$p("Laizistische Zeremonie", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Nous organisons une cérémonie laïque pour laquelle nous serions ravis que vous participiez si vous le souhaitez.",
+                               tags$p("Wir organisieren eine laizistische Zeremonie, bei der wir uns freuen würden, wenn Sie sich beteiligen, wenn Sie es wünschen.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                               tags$p("Cela peut être des lectures de textes, des discours, des chansons ou toutes autres envies qui vous passeraient par la tête !",
+                               tags$p("Das können Textlesungen, Reden, Lieder oder alle anderen Wünsche sein, die Ihnen in den Sinn kommen!",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                                
                                
-                               tags$p("Thème du mariage", 
+                               tags$p("Thema der Hochzeit", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Vous l'avez constaté, nous avons choisi l'univers du cinéma comme thème de notre mariage.",
+                               tags$p("Wie Sie vielleicht schon bemerkt haben, haben wir die Welt des Kinos als Thema für unsere Hochzeit gewählt.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                               tags$p("Nous serions enchantés de découvrir un détail de votre style vestimentaire nous rapellant un de vos films préférés !",
+                               tags$p("Wir würden uns freuen, wenn wir ein Detail in Ihrem Kleidungsstil entdecken könnten, das uns an einen Ihrer Lieblingsfilme erinnert!",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                      
-                               tags$p("Liste de mariage", 
+                               tags$p("Hochzeitsliste", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Pour notre mariage pas de liste..., mais un voyage ! ",
+                               tags$p("Für unsere Hochzeit keine Liste..., sondern eine Reise!",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                               tags$p("Un tronc sera disponible le jour du mariage.",
+                               tags$p("Ein Baumstamm wird am Tag der Hochzeit zur Verfügung stehen.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                                
-                               tags$p("Garde d'enfants", 
+                               tags$p("Kinderbetreuung", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Un baby-sitting sera organisé pour la durée de l'événement !",
+                               tags$p("Für die Dauer der Veranstaltung wird ein Babysitter organisiert!",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")
                
                                

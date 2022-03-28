@@ -29,7 +29,7 @@ mod_tab_place_server <- function(id, r_global){
         data_markers = tibble(
           longitude = c(7.487151646289885,7.481969), 
           latitude = c(48.921194828283234,48.921543),
-          name = c('<a href="https://g.page/Chateaulichtenberg?share" target="_blank" rel="noopener noreferrer">Château Lichtenberg</a>',
+          name = c('<a href="https://g.page/Chateaulichtenberg?share" target="_blank" rel="noopener noreferrer">Schloss Lichtenberg</a>',
                    '<a href="https://goo.gl/maps/FW6S6ReUpMuZidq76" target="_blank" rel="noopener noreferrer">Parking</a>')),
         icon_markers = c("heart","car-sport"),
         zoom = 8
@@ -47,7 +47,7 @@ mod_tab_place_server <- function(id, r_global){
         align = "center",
           tags$div(img(src = "www/bellenoe.jpg", width="100%"), style = "text-align: center; width = 50%"),
           tags$br(style = "line-height: 20px"),
-          tags$p("Château de Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")),
+          tags$p("Schloss Lichtenberg", style = "font-family: \'Bauer Bodoni Std 1\'; letter-spacing:3px; text-align: center")),
       tags$br(style = "line-height: 80px"),
      fluidRow(
      
@@ -63,7 +63,7 @@ mod_tab_place_server <- function(id, r_global){
       # Parking
       tags$br(style = "line-height: 80px"),
       
-      tags$p("L'accès au château se fait à pied, le parking se situe au milieu du village sur la place de l'église. (nous contacter en cas de mobilité réduite).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+      tags$p("Der Zugang zum Schloss erfolgt zu Fuß. Der Parkplatz befindet sich in der Mitte des Dorfes auf dem Kirchplatz. (Bitte kontaktieren Sie uns, wenn Sie in Ihrer Mobilität eingeschränkt sind).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
       
       tags$br(style = "line-height: 80px")
       
