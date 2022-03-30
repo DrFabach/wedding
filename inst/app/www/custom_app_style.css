@@ -197,7 +197,16 @@ font-size: 16px;
     img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {
     max-width: 100%;
 }
+.landing-block.background-content {
+    position: relative;
+}
 
+
+.landing-wrapper .background-content img{
+    display: block;
+    width: 100%;
+    position: relative;
+}
 .landing-wrapper .foreground-content {
   position: static;
  
@@ -210,13 +219,9 @@ font-size: 16px;
   background-color: #f7f7f700;
 
 }
-.landing-wrapper .background-content {
-    display: block;
-    width: 100%;
-    position: relative;
-}
+
 .landing-wrapper .foreground-content {
-  position: static;
+  position: relative;
   top: auto%;
   z-index: 9999;
   display: flex;
