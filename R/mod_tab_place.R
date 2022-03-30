@@ -65,7 +65,9 @@ mod_tab_place_server <- function(id, r_global){
       
       tags$p("Der Zugang zum Schloss erfolgt zu Fuß. Der Parkplatz befindet sich in der Mitte des Dorfes auf dem Kirchplatz. (Bitte kontaktieren Sie uns, wenn Sie in Ihrer Mobilität eingeschränkt sind).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
       
-      tags$br(style = "line-height: 80px")
+     tags$br(style = "line-height: 80px"),
+     fluidRow( align = "center", HTML('<iframe src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d2621.6804203796464!2d7.482705715855153!3d48.921480704216144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e2!4m4!1s0x47969dfa815b010b%3A0xabafe904b998cccc!3m2!1d48.9217048!2d7.481438!4m5!1s0x47969c884b29bae5%3A0x96529b46d62b91e3!2sCh%C3%A2teau%20de%20Lichtenberg%2C%20Rue%20des%20Cochers%2C%2067340%20Lichtenberg!3m2!1d48.921158899999995!2d7.4864538!5e0!3m2!1sen!2sfr!4v1648657427424!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>')
+     )
       
       # Hébergements
       # fluidRow(

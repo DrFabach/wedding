@@ -51,7 +51,7 @@ mod_tab_covid_ui <- function(id){
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
                                tags$p("Für unsere Hochzeit keine Liste..., sondern eine Reise!",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                               tags$p("Ein Baumstamm wird am Tag der Hochzeit zur Verfügung stehen.",
+                               tags$p("Ein Hochzeitsurne wird am Tag der Hochzeit zur Verfügung stehen.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                                
                                tags$p("Kinderbetreuung", 

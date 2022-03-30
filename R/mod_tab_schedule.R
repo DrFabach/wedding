@@ -47,7 +47,7 @@ mod_tab_schedule_server <- function(id, r_global){
         tags$p("15 Uhr", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$p("Schloss Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$br(style = "line-height: 80px"),
-        tags$p("Vin d\'honneur", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+        tags$p("Ehrenwein", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
         tags$p("17 Uhr", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         tags$p("Schloss Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
         fin <- tagList(tags$br(style = "line-height: 80px"),
