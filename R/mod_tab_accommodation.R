@@ -42,7 +42,7 @@ mod_tab_accommodation_ui <- function(id){
         tags$br(style = "line-height: 20px"),
         tags$a("Site internet", href = "https://tourisme.hanau-lapetitepierre.alsace/fiche/hebergements-collectifs/gite-de-groupe-2/", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center;"),
         tags$br(style = "line-height: 20px"),
-        tags$p("Nous contacter pour réserver cet hébergement (30€/personne).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+        tags$p("Kontaktieren Sie uns, um diese Unterkunft zu buchen (20€/Person).", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
         
         tags$br(style = "line-height: 20px")
        ),

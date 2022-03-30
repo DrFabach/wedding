@@ -25,7 +25,7 @@ mod_tab_witnesses_ui <- function(id){
         
         style = "border-right:1px solid",
         
-        tags$p("Nous contacter :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+        tags$p("Kontaktieren Sie uns :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
         
         tags$br(style = "line-height: 20px"),
         
@@ -42,7 +42,7 @@ mod_tab_witnesses_ui <- function(id){
         
         align = "center",
         
-        tags$p("Contacter les témoins :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+        tags$p("Trauzeugen kontaktieren :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
         
         tags$br(style = "line-height: 20px"),
         tags$p("temoins_barbara@fabacher.fr"),
@@ -55,7 +55,7 @@ mod_tab_witnesses_ui <- function(id){
     ),
     fluidRow(    align = "center",
                  
-                 tags$p("Contacter le maître de cérémonie :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+                 tags$p("Den Zeremonienmeister kontaktieren :", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
                  
                  tags$br(style = "line-height: 20px"),
                  tags$p("ceremonie@fabacher.fr")
