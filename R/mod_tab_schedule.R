@@ -53,11 +53,11 @@ mod_tab_schedule_server <- function(id, r_global){
         fin <- tagList(tags$br(style = "line-height: 80px"),
                        tags$p("D\u00eener", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
                        tags$p("19 heures 30", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                       tags$p("Salle communale de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+                       tags$p("Salle des fêtes de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                        tags$br(style = "line-height: 80px"),
                        tags$p("Brunch", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
                        tags$p("10 heures 30 le lendemain", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                       tags$p("Salle communale de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
+                       tags$p("Salle des fêtes  de Lichtenberg", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"))
         if(partie =="tout"){
           return(tagList(
             

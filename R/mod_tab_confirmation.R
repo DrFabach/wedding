@@ -40,7 +40,7 @@ mod_tab_confirmation_ui <- function(id) {
                   textInput(
                     inputId = ns("mail"),
                     label = "Adresse mail :",
-                    value = "Adresse mail de contact"
+                    placeholder = "Adresse mail de contact"
                     )
     ),
     fluidRow(align="center",

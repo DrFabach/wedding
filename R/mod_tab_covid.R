@@ -56,7 +56,7 @@ mod_tab_covid_ui <- function(id){
                                
                                tags$p("Garde d'enfants", 
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
-                               tags$p("Un baby-sitting sera organisé pour la durée de l'événement !",
+                               tags$p("Un baby-sitting sera organisé !",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center")
                
                                
