@@ -62,7 +62,23 @@ app_server <- function( input, output, session ) {
         gsub("ù","u",.)%>%
         gsub("ç","c",.)
       
-    res<-data_guests%>%filter(prenom==user,
+    res<-data_guests%>%mutate(prenom=prenom%>%tolower%>%
+                                gsub(" ","",.)%>%
+                                gsub("-","",.)%>%
+                                gsub("[éèêe]","e",.)%>%
+                                gsub("à","a",.)%>%
+                                gsub("ô","o",.)%>%
+                                gsub("ù","u",.)%>%
+                                gsub("ç","c",.))%>%
+mutate(nom=nom%>%tolower%>%
+         gsub(" ","",.)%>%
+         gsub("-","",.)%>%
+         gsub("[éèêe]","e",.)%>%
+         gsub("à","a",.)%>%
+         gsub("ô","o",.)%>%
+         gsub("ù","u",.)%>%
+         gsub("ç","c",.))%>%
+    filter(prenom==user,
                            nom==password)
    
 
