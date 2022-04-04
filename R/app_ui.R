@@ -76,7 +76,7 @@ golem_add_external_resources <- function(){
   )
   
   set_labels(
-    language = "en",
+    language = "fr",
     "Please authenticate" = "Site du Mariage de Barbara & Thibaut",
     "Username:" = "Prénom",
     "Password:" = "Nom de famille",
