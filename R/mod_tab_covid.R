@@ -44,7 +44,7 @@ mod_tab_covid_ui <- function(id){
                                       style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:3px; text-align: center"),
                                tags$p("Vous l'avez constaté, nous avons choisi l'univers du cinéma comme thème de notre mariage.",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                               tags$p("Nous serions enchantés de découvrir un détail de votre style vestimentaire nous rapellant un de vos films préférés !",
+                               tags$p("Nous serions enchantés de découvrir un détail de votre style vestimentaire nous rappelant un de vos films préférés !",
                                       style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                      
                                tags$p("Liste de mariage", 
