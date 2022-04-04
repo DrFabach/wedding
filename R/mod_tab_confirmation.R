@@ -143,7 +143,7 @@ mod_tab_confirmation_server <-
             shinyWidgets::materialSwitch(
               inputId = ns("enfant_1"),
               label = "Je viens avec mes enfants", 
-              value = TRUE,
+              value = F,
               right = TRUE,
               status = "success"
             ) ,  style = "text-align: initial;")
