@@ -7,6 +7,7 @@
 app_ui <- function(request) {
   
   tagList(
+    tags$html(lang="fr"),
     # Leave this function for adding external resources
     golem_add_external_resources(),
     
