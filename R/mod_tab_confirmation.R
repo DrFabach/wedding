@@ -378,26 +378,26 @@ mod_tab_confirmation_server <-
                                ifelse(length(input$here_cocktail_2)==0,"",input$here_cocktail_2)
                              
                                )%>%as.character() 
-            r_local$here_dinner = ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_dinner,
-                                                                                   input$here_dinner_2
-                                                                                   )%>%as.character())
-            r_local$here_brunch =ifelse(length(input$here_dinner)==0,c("F","F"),c(input$here_brunch,
-                                                                                  input$here_brunch_2
-                                                                                  )%>%as.character())
-            r_local$special_diet= ifelse(length(input$here_dinner)==0,c("",""), c(input$special_diet,
-                                                                                  input$special_diet_2
-                                                                                  )%>%as.character())
-            r_local$film =   c(input$film, 
-                               input$film_2
-                               )%>%as.character()
-            r_local$enfant =   input$enfant_1%>%as.character()
-            r_local$enfant=ifelse(length(r_local$enfant)==0,c("F","F"),r_local$enfant)
-            r_local$ceremonie =  c(input$ceremonie, 
-                                   ifelse(length(input$ceremonie_2)==0,"",input$ceremonie_2)
-                                  
-                                   )%>%as.character()
-            r_local$mail =c(input$mail,input$mail)
-            
+      if(length(input$here_dinner)==0){
+        r_local$here_dinner = c("F","F")
+        print(r_local$here_dinner_2)
+        r_local$here_brunch =c("F","F")
+        r_local$special_diet= c("","")
+        
+        
+      }else{
+        r_local$here_dinner =c(input$here_dinner%>%as.character(),
+                               ifelse(length(input$here_dinner_2)==0,"",input$here_dinner_2)%>%as.character())
+        
+        print(r_local$here_dinner_2)
+        r_local$here_brunch =c(input$here_brunch%>%as.character(),
+                               ifelse(length(input$here_brunch_2)==0,"",input$here_brunch_2)%>%as.character())
+        
+        r_local$special_diet= c(input$special_diet%>%as.character(),
+                                ifelse(length(input$special_diet_2)==0,"",input$special_diet_2)%>%as.character())
+        
+        
+      }    
             r_local$date = Sys.time()%>%as.character()
             
       r_local$info<-r_local$info%>%add_row(
