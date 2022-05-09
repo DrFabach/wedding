@@ -33,14 +33,16 @@ mod_tab_schedule_server <- function(id, r_global){
       print(partie)
       output$programme <- renderUI({ 
         
-        debut<-tagList(tags$p("Bénédiction", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
-                       tags$p("11 heures", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                       tags$p("Paulus chapelle", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
-                       tags$br(style = "line-height: 80px"),
+        debut<-tagList(
                        
                        tags$p("Mairie", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
-                       tags$p("12 heures", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+                       tags$p("11 heures 30", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                        tags$p("Meisenthal", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+                       tags$br(style = "line-height: 80px"),
+                       
+                       tags$p("Bénédiction", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
+                       tags$p("12 heures", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
+                       tags$p("Paulus chapelle", style = "font-family: \'MrsEavesItalic\'; letter-spacing:3px; text-align: center"),
                        tags$br(style = "line-height: 80px"))
         milieu<-
           tagList(tags$p("C\u00e9r\u00e9monie la\u00efque", style = "font-family: \'Bauer Bodoni Std 1\'; font-size: 30px; letter-spacing:5px; text-align: center"),
